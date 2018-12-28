@@ -31,13 +31,13 @@ public class Pass implements BuguEntity {
     private  String ceilStatus;
     @ApiModelProperty(name = "floorStatus", value = "下限状态", example = "")
     private  String floorStatus;
-    @ApiModelProperty(name = "sensorType", value = "模拟信号量程-零度", example = "")
+    @ApiModelProperty(name = "analogZero", value = "模拟信号量程-零度", example = "")
     private  String analogZero;
-    @ApiModelProperty(name = "sensorType", value = "模拟信号量程-满点", example = "")
+    @ApiModelProperty(name = "analogFull", value = "模拟信号量程-满点", example = "")
     private  String analogFull;
-    @ApiModelProperty(name = "sensorType", value = "传感器量程-零度", example = "")
+    @ApiModelProperty(name = "sensorZero", value = "传感器量程-零度", example = "")
     private  String sensorZero;
-    @ApiModelProperty(name = "sensorType", value = "传感器量程-满点", example = "")
+    @ApiModelProperty(name = "sensorFull", value = "传感器量程-满点", example = "")
     private  String sensorFull;
     @ApiModelProperty(name = "decimalPlaces", value = "小数点位数", example = "3")
     private  String decimalPlaces;
@@ -52,12 +52,21 @@ public class Pass implements BuguEntity {
     public void setId(String id) {
         this.id = id;
     }
+
     public String getPassNo() {
         return passNo;
     }
 
     public void setPassNo(String passNo) {
         this.passNo = passNo;
+    }
+
+    public Gateway getGateway() {
+        return gateway;
+    }
+
+    public void setGateway(Gateway gateway) {
+        this.gateway = gateway;
     }
 
     public Sensor getSensor() {
@@ -132,13 +141,19 @@ public class Pass implements BuguEntity {
         this.sensorFull = sensorFull;
     }
 
-    public String getDecimalPlaces() { return decimalPlaces; }
+    public String getDecimalPlaces() {
+        return decimalPlaces;
+    }
 
     public void setDecimalPlaces(String decimalPlaces) {
         this.decimalPlaces = decimalPlaces;
     }
 
-    public String getDeleteFlag() { return deleteFlag; }
+    public String getDeleteFlag() {
+        return deleteFlag;
+    }
 
-    public void setDeleteFlag(String deleteFlag) { this.deleteFlag = deleteFlag; }
+    public void setDeleteFlag(String deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
 }

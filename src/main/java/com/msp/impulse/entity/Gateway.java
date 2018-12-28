@@ -18,7 +18,7 @@ public class Gateway implements BuguEntity {
     @ApiModelProperty(name = "equipmentName", value = "设备名称", example = "")
     private String equipmentName;
     @ApiModelProperty(name = "equipmentNo", value = "设备序列号", example = "")
-    private int equipmentNo;
+    private Integer equipmentNo;
     @ApiModelProperty(name = "equipmentType", value = "设备类型", example = "")
     private String equipmentType;
     @ApiModelProperty(name = "equipmentModel", value = "设备型号", example = "")
@@ -46,7 +46,7 @@ public class Gateway implements BuguEntity {
     @ApiModelProperty(name = "overtimePeriod", value = "超时周期", example = "")
     private String overtimePeriod;
     @RefList
-    @ApiModelProperty(name = "passList", value = "通道参数", example = "[]")
+    @ApiModelProperty(name = "pass", value = "通道参数", example = "[]")
     private Pass pass;
     @RefList
     @ApiModelProperty(name = "extPassParamList", value = "外接通道参数", example = "[]")
@@ -75,11 +75,11 @@ public class Gateway implements BuguEntity {
         this.equipmentName = equipmentName;
     }
 
-    public int getEquipmentNo() {
+    public Integer getEquipmentNo() {
         return equipmentNo;
     }
 
-    public void setEquipmentNo(int equipmentNo) {
+    public void setEquipmentNo(Integer equipmentNo) {
         this.equipmentNo = equipmentNo;
     }
 
