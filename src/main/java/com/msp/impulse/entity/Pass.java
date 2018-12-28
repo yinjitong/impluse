@@ -18,7 +18,10 @@ public class Pass implements BuguEntity {
     @ApiModelProperty(name = "passNo", value = "通道号", example = "")
     private  String passNo;
     @Ref
-    @ApiModelProperty(name = "sensor", value = "传感器", example = "")
+    @ApiModelProperty(name = "gateway", value = "网关", example = "{}")
+    private  Gateway gateway;
+    @Ref
+    @ApiModelProperty(name = "sensor", value = "传感器", example = "{}")
     private  Sensor sensor;
     @ApiModelProperty(name = "alarmCeil", value = "报警上限", example = "")
     private  String alarmCeil;
@@ -38,17 +41,17 @@ public class Pass implements BuguEntity {
     private  String sensorFull;
     @ApiModelProperty(name = "decimalPlaces", value = "小数点位数", example = "3")
     private  String decimalPlaces;
+    @ApiModelProperty(name="deleteFlag",value = "删除标志",example = "0-使用1-删除")
+    private  String  deleteFlag;
 
     @Override
     public String getId() {
         return id;
     }
-
     @Override
     public void setId(String id) {
         this.id = id;
     }
-
     public String getPassNo() {
         return passNo;
     }
@@ -129,11 +132,13 @@ public class Pass implements BuguEntity {
         this.sensorFull = sensorFull;
     }
 
-    public String getDecimalPlaces() {
-        return decimalPlaces;
-    }
+    public String getDecimalPlaces() { return decimalPlaces; }
 
     public void setDecimalPlaces(String decimalPlaces) {
         this.decimalPlaces = decimalPlaces;
     }
+
+    public String getDeleteFlag() { return deleteFlag; }
+
+    public void setDeleteFlag(String deleteFlag) { this.deleteFlag = deleteFlag; }
 }

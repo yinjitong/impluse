@@ -13,7 +13,7 @@ import java.util.List;
 @ApiModel(value = "网关", description = "网关")
 public class Gateway implements BuguEntity {
     @Id
-    @ApiModelProperty(name = "id", value = "网关ID", example = "5be402294932ff3690e3f4ba")
+    @ApiModelProperty(name = "id", value = "网关ID", example = "1")
     private String id;
     @ApiModelProperty(name = "equipmentName", value = "设备名称", example = "")
     private String equipmentName;
@@ -23,10 +23,12 @@ public class Gateway implements BuguEntity {
     private String equipmentType;
     @ApiModelProperty(name = "equipmentModel", value = "设备型号", example = "")
     private String equipmentModel;
-    @ApiModelProperty(name = "totalPass", value = "总通道数", example = "100")
-    private Integer totalPass;
-    @ApiModelProperty(name = "usablePass", value = "可用通道数", example = "50")
-    private Integer usablePass;
+
+//    @ApiModelProperty(name = "totalPass", value = "总通道数", example = "100")
+//    private Integer totalPass;
+//    @ApiModelProperty(name = "usablePass", value = "可用通道数", example = "50")
+//    private Integer usablePass;
+
     @ApiModelProperty(name = "longitude", value = "经度", example = "116.46176")
     private String longitude;
     @ApiModelProperty(name = "latitude", value = "纬度", example = "39.905859")
@@ -35,22 +37,27 @@ public class Gateway implements BuguEntity {
     private String workModel;
     @ApiModelProperty(name = "port", value = "端口号", example = "8080")
     private String port;
-    @ApiModelProperty(name = "workStatus", value = "工作状态", example = "")
-    private String workStatus;
-    @ApiModelProperty(name = "relayNumber", value = "继电器数量", example = "")
-    private Integer relayNumber;
+
+//    @ApiModelProperty(name = "relayNumber", value = "继电器数量", example = "")
+//    private Integer relayNumber;
+
     @ApiModelProperty(name = "pollPeriod", value = "轮询周期", example = "")
     private String pollPeriod;
     @ApiModelProperty(name = "overtimePeriod", value = "超时周期", example = "")
     private String overtimePeriod;
     @RefList
     @ApiModelProperty(name = "passList", value = "通道参数", example = "[]")
-    private List<Pass> passList;
+    private Pass pass;
     @RefList
     @ApiModelProperty(name = "extPassParamList", value = "外接通道参数", example = "[]")
-    private List<ExtPassParam> extPassParamList;
-
-
+    private List<ExtPass> extPassParamList;
+    @RefList
+    @ApiModelProperty(name = "relayList", value = "继电器", example = "[]")
+    private  List<Relay> relayList;
+    @ApiModelProperty(name = "workStatus", value = "工作状态", example = "0-开 1-关")
+    private String workStatus;
+    @ApiModelProperty(name="deleteFlag",value = "删除标志",example = "0-使用1-删除")
+    private  String  deleteFlag;
 
     public String getId() {
         return id;
@@ -90,22 +97,6 @@ public class Gateway implements BuguEntity {
 
     public void setEquipmentModel(String equipmentModel) {
         this.equipmentModel = equipmentModel;
-    }
-
-    public Integer getTotalPass() {
-        return totalPass;
-    }
-
-    public void setTotalPass(Integer totalPass) {
-        this.totalPass = totalPass;
-    }
-
-    public Integer getUsablePass() {
-        return usablePass;
-    }
-
-    public void setUsablePass(Integer usablePass) {
-        this.usablePass = usablePass;
     }
 
     public String getLongitude() {
@@ -148,14 +139,6 @@ public class Gateway implements BuguEntity {
         this.workStatus = workStatus;
     }
 
-    public Integer getRelayNumber() {
-        return relayNumber;
-    }
-
-    public void setRelayNumber(Integer relayNumber) {
-        this.relayNumber = relayNumber;
-    }
-
     public String getPollPeriod() {
         return pollPeriod;
     }
@@ -172,21 +155,27 @@ public class Gateway implements BuguEntity {
         this.overtimePeriod = overtimePeriod;
     }
 
-    public List<Pass> getPassList() {
-        return passList;
-    }
+    public Pass getPass() { return pass; }
 
-    public void setPassList(List<Pass> passList) {
-        this.passList = passList;
-    }
+    public void setPass(Pass pass) { this.pass = pass; }
 
-    public List<ExtPassParam> getExtPassParamList() {
+    public List<ExtPass> getExtPassParamList() {
         return extPassParamList;
     }
 
-    public void setExtPassParamList(List<ExtPassParam> extPassParamList) {
+    public void setExtPassParamList(List<ExtPass> extPassParamList) {
         this.extPassParamList = extPassParamList;
     }
 
+    public List<Relay> getRelayList() { return relayList; }
 
+    public void setRelayList(List<Relay> relayList) { this.relayList = relayList; }
+
+    public String getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(String deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
 }

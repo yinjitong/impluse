@@ -5,6 +5,7 @@ import com.msp.impulse.base.BaseResponse;
 import com.msp.impulse.base.ResponseCode;
 import com.msp.impulse.dao.GatewayDao;
 import com.msp.impulse.entity.Gateway;
+import com.msp.impulse.query.GatewayQuery;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,40 +35,36 @@ public class GatewayService {
 
     /**
      * 根据条件分页查询网关信息
-     * @param gateway
-     * @param pageSize
-     * @param pageNumber
+     * @param gatewayQuery
      * @return
      */
-    public BaseResponse<List<Gateway>> findSenorByCondition(Gateway gateway,Integer pageSize,Integer pageNumber) {
+    public BaseResponse<List<Gateway>> findSenorByCondition(GatewayQuery gatewayQuery) {
         BaseResponse<List<Gateway>> response = new BaseResponse<>();
         BuguQuery<Gateway> buguQuery = gatewayDao.query();
 
-        if (StringUtils.isNotBlank(gateway.getEquipmentName())) {
-            buguQuery.is("equipmentName", gateway.getEquipmentName());
+        if (StringUtils.isNotBlank(gatewayQuery.getEquipmentName())) {
+            buguQuery.is("equipmentName", gatewayQuery.getEquipmentName());
         }
-        if (StringUtils.isNotBlank(gateway.getWorkModel())) {
-            buguQuery.is("workModel", gateway.getWorkModel());
+        if (StringUtils.isNotBlank(gatewayQuery.getWorkModel())) {
+            buguQuery.is("workModel", gatewayQuery.getWorkModel());
         }
-
-        if (StringUtils.isNotBlank(gateway.getEquipmentType())) {
-            buguQuery.is("equipmentType", gateway.getEquipmentType());
+        if (StringUtils.isNotBlank(gatewayQuery.getEquipmentType())) {
+            buguQuery.is("equipmentType", gatewayQuery.getEquipmentType());
         }
-        if (StringUtils.isNotBlank(gateway.getEquipmentModel())) {
-            buguQuery.is("equipmentModel", gateway.getEquipmentModel());
+        if (StringUtils.isNotBlank(gatewayQuery.getEquipmentModel())) {
+            buguQuery.is("equipmentModel", gatewayQuery.getEquipmentModel());
         }
-
-        if (StringUtils.isNotBlank(gateway.getWorkStatus())) {
-            buguQuery.is("workStatus", gateway.getWorkStatus());
+        if (StringUtils.isNotBlank(gatewayQuery.getWorkStatus())) {
+            buguQuery.is("workStatus", gatewayQuery.getWorkStatus());
         }
 
         //最小页为第一页
-        if (pageNumber<1){
-            pageNumber=1;
+        if (gatewayQuery.getPageNo()<1){
+            gatewayQuery.setPageNo(1);
         }
 
-        buguQuery.pageNumber(pageNumber);
-        buguQuery.pageSize(pageSize);
+        buguQuery.pageNumber(gatewayQuery.getPageNo());
+        buguQuery.pageSize(gatewayQuery.getPageSize());
         response.setData(buguQuery.results());
         response.setResponseCode(ResponseCode.OK.getCode());
         response.setResponseMsg(ResponseCode.OK.getMessage());

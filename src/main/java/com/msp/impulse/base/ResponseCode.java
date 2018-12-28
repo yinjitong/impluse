@@ -7,7 +7,10 @@ public enum ResponseCode {
     PARAMETER_ISNULL(2002, "参数为空"),
     USERNAME_OR_PWD_WRONG(3001,"用户名或者密码错误"),
     OPWD_WRONG(3002,"原密码输入不正确!"),
-    NOT_LOGIN(3003,"未登录，请先登录");
+    NOT_LOGIN(3003,"未登录，请先登录"),
+    USERNAME_NULL(3004,"请输入用户名"),
+    PASSWORD_NULL(3005,"请输入密码"),
+    ;
 
 
 

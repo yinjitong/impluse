@@ -24,7 +24,6 @@ public class SensorService {
     public BaseResponse addSensor(Sensor sensor) {
         BaseResponse response=new BaseResponse();
         sensorDao.save(sensor);
-
         response.setResponseCode(ResponseCode.OK.getCode());
         response.setResponseMsg(ResponseCode.OK.getMessage());
         return response;

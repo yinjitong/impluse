@@ -6,6 +6,8 @@ import com.msp.impulse.entity.User;
 import com.msp.impulse.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,21 +18,21 @@ import java.util.List;
 @RequestMapping("user")
 @Api(value="用户接口", tags = "用户接口", description="用户接口API")
 public class UserController {
+    private static Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     UserService userService;
 
     @GetMapping("getAll")
-    @ApiOperation(value = "获取所有用户", notes = "获取所有用户", tags = "获取所有用户",httpMethod = "POST")
+    @ApiOperation(value = "获取所有用户", notes = "获取所有用户", tags = "获取所有用户",httpMethod = "GET")
     public BaseResponse<List<User>> getAll(){
         BaseResponse<List<User>> response;
         try{
             response = userService.getAll();
         }catch (Exception e){
+            logger.error(e.getMessage(),e);
             response = new BaseResponse<>();
             response.setResponseCode(ResponseCode.SERVER_FAILED.getCode());
             response.setResponseMsg(ResponseCode.SERVER_FAILED.getMessage());
-        }finally {
-
         }
         return response;
     }
@@ -43,11 +45,10 @@ public class UserController {
         try{
             response = userService.addUser(user);
         }catch (Exception e){
+            logger.error(e.getMessage(),e);
             response = new BaseResponse<>();
             response.setResponseCode(ResponseCode.SERVER_FAILED.getCode());
             response.setResponseMsg(ResponseCode.SERVER_FAILED.getMessage());
-        }finally {
-
         }
         return response;
     }
@@ -62,6 +63,7 @@ public class UserController {
            response= userService.modifyPwd(user,oPwd,newPwd);
 
         }catch(Exception e){
+            logger.error(e.getMessage(),e);
             e.printStackTrace();
             response.setResponseCode(ResponseCode.SERVER_FAILED.getCode());
             response.setResponseMsg(ResponseCode.SERVER_FAILED.getMessage());

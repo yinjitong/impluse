@@ -6,6 +6,8 @@ import com.msp.impulse.entity.Sensor;
 import com.msp.impulse.service.SensorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +17,7 @@ import java.util.List;
 @RequestMapping("sensor")
 @Api(value = "传感器接口", tags = "传感器接口", description = "传感器接口API")
 public class SensorController {
-
+    private static Logger logger = LoggerFactory.getLogger(SensorController.class);
     @Autowired
     private SensorService sensorService;
 
@@ -26,6 +28,7 @@ public class SensorController {
         try{
            response=sensorService.addSensor(sensor);
         }catch(Exception e){
+            logger.error(e.getMessage(),e);
             e.printStackTrace();
             response = new BaseResponse<>();
             response.setResponseCode(ResponseCode.SERVER_FAILED.getCode());
@@ -41,6 +44,7 @@ public class SensorController {
         try{
             response=sensorService.querySensorById(id);
         }catch(Exception e){
+            logger.error(e.getMessage(),e);
             e.printStackTrace();
             response = new BaseResponse<>();
             response.setResponseCode(ResponseCode.SERVER_FAILED.getCode());
@@ -56,11 +60,11 @@ public class SensorController {
         try{
             response=sensorService.queryBySensorAndGateway(sensorName,gateWayName);
         }catch(Exception e){
+            logger.error(e.getMessage(),e);
             e.printStackTrace();
             response = new BaseResponse<>();
             response.setResponseCode(ResponseCode.SERVER_FAILED.getCode());
             response.setResponseMsg(ResponseCode.SERVER_FAILED.getMessage());
-
         }
         return response;
     }

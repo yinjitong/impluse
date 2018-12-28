@@ -1,26 +1,39 @@
 package com.msp.impulse.entity;
 
+import com.bugull.mongo.BuguEntity;
+import com.bugull.mongo.annotations.Entity;
+import com.bugull.mongo.annotations.Id;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-public class Company {
-    @ApiModelProperty(name = "company", value = "公司", example = "殷继彤的海鲜公司", required = true)
-    private String company;
+@Entity
+@ApiModel(value = "公司", description = "公司")
+public class Company  implements BuguEntity {
+    @Id
+    @ApiModelProperty(name = "id", value = "公司id", example = "1")
+    private String id;
+    @ApiModelProperty(name = "companyName", value = "公司名称", example = "殷继彤的海鲜公司", required = true)
+    private String companyName;
     @ApiModelProperty(name = "province", value = "省/市", example = "河北", required = true)
     private String province;
     @ApiModelProperty(name = "city", value = "市/区", example = "唐山", required = true)
     private String city;
-    @ApiModelProperty(name = "detailedAdd", value = "详细地址", example = "地震遗址", required = true)
+    @ApiModelProperty(name = "detailedAdd", value = "详细地址", example = "", required = true)
     private String detailedAdd;
+    @ApiModelProperty(name = "loginName", value = "登录名", example = "殷继彤的海鲜公司", required = true)
+    private String loginName;
     @ApiModelProperty(name = "postalCode", value = "邮政编码", example = "100000", required = true)
     private String postalCode;
 
-    public String getCompany() {
-        return company;
-    }
+    @Override
+    public String getId() {return id; }
 
-    public void setCompany(String company) {
-        this.company = company;
-    }
+    @Override
+    public void setId(String id) { this.id = id;}
+
+    public String getCompanyName() { return companyName; }
+
+    public void setCompanyName(String companyName) { this.companyName = companyName; }
 
     public String getProvince() {
         return province;
@@ -45,6 +58,10 @@ public class Company {
     public void setDetailedAdd(String detailedAdd) {
         this.detailedAdd = detailedAdd;
     }
+
+    public String getLoginName() { return loginName; }
+
+    public void setLoginName(String loginName) { this.loginName = loginName; }
 
     public String getPostalCode() {
         return postalCode;

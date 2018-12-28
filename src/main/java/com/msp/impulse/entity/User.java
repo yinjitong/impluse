@@ -11,7 +11,7 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "用户", description = "用户")
 public class User extends SimpleEntity {
     @Id
-    @ApiModelProperty(name = "Id", value = "用户ID", example = "5bd73ffd72c540e435ecbfbf")
+    @ApiModelProperty(name = "Id", value = "用户ID", example = "1")
     private String id;
     @ApiModelProperty(name = "name", value = "姓名", example = "殷继彤", required = true)
     private String name;
@@ -19,7 +19,7 @@ public class User extends SimpleEntity {
     private String account;
     @ApiModelProperty(name = "password", value = "密码", example = "admin", required = true)
     private String password;
-    @ApiModelProperty(name = "phoneNo", value = "手机号", example = "13888888888", required = true)
+    @ApiModelProperty(name = "phoneNo", value = "手机号", example = "13333333333", required = true)
     private  String phoneNo;
     @ApiModelProperty(name = "gender", value = "性别", example = "女", required = true)
     private String gender;

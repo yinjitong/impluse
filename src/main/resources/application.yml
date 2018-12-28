@@ -1,5 +1,3 @@
-bugumongo:
-  db:
-    host: 10.1.1.28
-    port: 27017
-    database: mongotest
+spring:
+  profiles:
+    active: dev
