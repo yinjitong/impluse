@@ -1,6 +1,14 @@
 spring:
   application:
     name: impulse    # 项目名称尽量用小写
+  data:
+    mongodb:
+      custom:
+        hosts:
+        - 192.168.228.133
+        ports:
+        - 27017
+        database: huanyu
   jackson:
     deserialization:
       FAIL_ON_UNKNOWN_PROPERTIES: false
@@ -8,12 +16,6 @@ spring:
 
 server:
   port: 8080
-
-bugumongo:
-  db:
-    host: 192.168.228.133
-    port: 27017
-    database: huanyu
 
 logging:
   level:

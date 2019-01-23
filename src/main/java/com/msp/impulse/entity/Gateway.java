@@ -1,17 +1,16 @@
 package com.msp.impulse.entity;
 
-import com.bugull.mongo.BuguEntity;
-import com.bugull.mongo.annotations.Entity;
-import com.bugull.mongo.annotations.Id;
-import com.bugull.mongo.annotations.RefList;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
-@Entity
 @ApiModel(value = "网关", description = "网关")
-public class Gateway implements BuguEntity {
+public class Gateway implements Serializable {
     @Id
     @ApiModelProperty(name = "id", value = "网关ID", example = "1")
     private String id;
@@ -45,19 +44,21 @@ public class Gateway implements BuguEntity {
     private String pollPeriod;
     @ApiModelProperty(name = "overtimePeriod", value = "超时周期", example = "")
     private String overtimePeriod;
-    @RefList
+    @DBRef
     @ApiModelProperty(name = "pass", value = "通道参数", example = "[]")
-    private Pass pass;
-    @RefList
-    @ApiModelProperty(name = "extPassParamList", value = "外接通道参数", example = "[]")
-    private List<ExtPass> extPassParamList;
-    @RefList
+    private List<Pass> passList;
+    @DBRef
+    @ApiModelProperty(name = "extPass", value = "外接通道参数", example = "[]")
+    private ExtPass extPass;
+    @DBRef
     @ApiModelProperty(name = "relayList", value = "继电器", example = "[]")
     private  List<Relay> relayList;
     @ApiModelProperty(name = "workStatus", value = "工作状态", example = "0-开 1-关")
     private String workStatus;
     @ApiModelProperty(name="deleteFlag",value = "删除标志",example = "0-使用1-删除")
     private  String  deleteFlag;
+    @ApiModelProperty(name = "createTime", value = "创建时间", example = "2019-01-01 00:00:00", required = true)
+    private Date createTime;
 
     public String getId() {
         return id;
@@ -155,16 +156,20 @@ public class Gateway implements BuguEntity {
         this.overtimePeriod = overtimePeriod;
     }
 
-    public Pass getPass() { return pass; }
-
-    public void setPass(Pass pass) { this.pass = pass; }
-
-    public List<ExtPass> getExtPassParamList() {
-        return extPassParamList;
+    public List<Pass> getPassList() {
+        return passList;
     }
 
-    public void setExtPassParamList(List<ExtPass> extPassParamList) {
-        this.extPassParamList = extPassParamList;
+    public void setPassList(List<Pass> passList) {
+        this.passList = passList;
+    }
+
+    public ExtPass getExtPass() {
+        return extPass;
+    }
+
+    public void setExtPass(ExtPass extPass) {
+        this.extPass = extPass;
     }
 
     public List<Relay> getRelayList() { return relayList; }
@@ -177,5 +182,13 @@ public class Gateway implements BuguEntity {
 
     public void setDeleteFlag(String deleteFlag) {
         this.deleteFlag = deleteFlag;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

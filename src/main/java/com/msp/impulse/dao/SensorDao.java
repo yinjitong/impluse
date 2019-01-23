@@ -1,12 +1,16 @@
 package com.msp.impulse.dao;
 
-import com.bugull.mongo.BuguDao;
 import com.msp.impulse.entity.Sensor;
-import org.springframework.stereotype.Repository;
+import com.msp.impulse.query.SensorQuery;
 
-@Repository
-public class SensorDao  extends BuguDao<Sensor> {
-    public SensorDao() {
-        super(Sensor.class);
-    }
+import java.util.List;
+
+public interface SensorDao {
+    Sensor findOne(String id);
+
+    void save(Sensor sensor);
+
+    boolean findByName(String name);
+
+    List<Sensor> queryBySensorAndGateway(SensorQuery sensorQuery);
 }

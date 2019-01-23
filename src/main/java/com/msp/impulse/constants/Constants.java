@@ -1,4 +1,4 @@
-package com.msp.impulse.Constants;
+package com.msp.impulse.constants;
 
 public interface Constants {
     //监测类别

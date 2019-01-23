@@ -1,12 +1,13 @@
 package com.msp.impulse.entity;
 
-import com.bugull.mongo.annotations.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
+import java.util.Date;
 import java.util.List;
 
-@Entity
 @ApiModel(value = "传感器", description = "传感器")
 public class Sensor {
     @Id
@@ -16,21 +17,24 @@ public class Sensor {
     private String name;
     @ApiModelProperty(name = "sensorNo", value = "传感器序列号", example = "",required = true)
     private  String sensorNo;
-    @Ref
-    @ApiModelProperty(name = "gateway", value = "网关", example = "", required = true)
-    private Gateway gateway;
     @ApiModelProperty(name = "passNumber", value = "通道数", example = "1", required = true)
     private Integer passNumber;
     @ApiModelProperty(name = "longitude", value = "经度", example = "116.46176")
     private  String  longitude;
     @ApiModelProperty(name = "latitude", value = "纬度", example = "39.905859")
     private String latitude;
+    @DBRef
     @ApiModelProperty(name = "pass", value = "通道参数", example = "[]")
     private List<Pass> passList;
     @ApiModelProperty(name = "workStatus", value = "工作状态", example = "0-开 1-关")
     private String workStatus;
     @ApiModelProperty(name="deleteFlag",value = "删除标志",example = "0-使用1-删除")
     private  String  deleteFlag;
+    @ApiModelProperty(name = "createTime", value = "创建时间", example = "2019-01-01 00:00:00", required = true)
+    private Date createTime;
+    @ApiModelProperty(name = "gatewayName", value = "网管名称", example = "网关1", required = true)
+    private String gatewayName;
+
 
     public String getId() { return id; }
 
@@ -43,10 +47,6 @@ public class Sensor {
     public String getName() { return name; }
 
     public void setName(String name) { this.name = name; }
-
-    public Gateway getGateway() { return gateway; }
-
-    public void setGateway(Gateway gateway) { this.gateway = gateway; }
 
     public Integer getPassNumber() { return passNumber; }
 
@@ -89,4 +89,20 @@ public class Sensor {
     public String getDeleteFlag() { return deleteFlag; }
 
     public void setDeleteFlag(String deleteFlag) { this.deleteFlag = deleteFlag; }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getGatewayName() {
+        return gatewayName;
+    }
+
+    public void setGatewayName(String gatewayName) {
+        this.gatewayName = gatewayName;
+    }
 }

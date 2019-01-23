@@ -10,6 +10,11 @@ public enum ResponseCode {
     NOT_LOGIN(3003,"未登录，请先登录"),
     USERNAME_NULL(3004,"请输入用户名"),
     PASSWORD_NULL(3005,"请输入密码"),
+    SESSION_TIME_OUT(3006,"请重新登录！！！"),
+    GATEWAYNAME_REPEAT(3007,"网关名称重复！"),
+    GATEWAYNAME_NULL(3008,"网关名称为空！"),
+    SENSOR_REPEAT(3009,"传感器名称重复！"),
+    SENSOR_NULL(3010,"传感器名称为空！"),
     ;
 
 

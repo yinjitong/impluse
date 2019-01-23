@@ -1,28 +1,19 @@
 package com.msp.impulse.entity;
 
-import com.bugull.mongo.BuguEntity;
-import com.bugull.mongo.SimpleEntity;
-import com.bugull.mongo.annotations.Entity;
-import com.bugull.mongo.annotations.Id;
-import com.bugull.mongo.annotations.Ref;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
-@Entity
+import java.util.Date;
+
 @ApiModel(value = "通道", description = "通道")
-public class Pass implements BuguEntity {
-
+public class Pass  {
     @Id
     @ApiModelProperty(name = "id", value = "通道id", example = "5be402294932ff3690e3f4ba")
     private  String id;
     @ApiModelProperty(name = "passNo", value = "通道号", example = "")
     private  String passNo;
-    @Ref
-    @ApiModelProperty(name = "gateway", value = "网关", example = "{}")
-    private  Gateway gateway;
-    @Ref
-    @ApiModelProperty(name = "sensor", value = "传感器", example = "{}")
-    private  Sensor sensor;
     @ApiModelProperty(name = "alarmCeil", value = "报警上限", example = "")
     private  String alarmCeil;
     @ApiModelProperty(name = "alarmFloor", value = "报警下限", example = "")
@@ -43,12 +34,16 @@ public class Pass implements BuguEntity {
     private  String decimalPlaces;
     @ApiModelProperty(name="deleteFlag",value = "删除标志",example = "0-使用1-删除")
     private  String  deleteFlag;
+    @ApiModelProperty(name = "createTime", value = "创建时间", example = "2019-01-01 00:00:00", required = true)
+    private Date createTime;
+    @ApiModelProperty(name="SensorName",value = "传感器名称",example = "传感器1")
+    private  String  SensorName;
+    @ApiModelProperty(name="SensorType",value = "传感器类型",example = "传感器类型1")
+    private  String  SensorType;
 
-    @Override
     public String getId() {
         return id;
     }
-    @Override
     public void setId(String id) {
         this.id = id;
     }
@@ -59,22 +54,6 @@ public class Pass implements BuguEntity {
 
     public void setPassNo(String passNo) {
         this.passNo = passNo;
-    }
-
-    public Gateway getGateway() {
-        return gateway;
-    }
-
-    public void setGateway(Gateway gateway) {
-        this.gateway = gateway;
-    }
-
-    public Sensor getSensor() {
-        return sensor;
-    }
-
-    public void setSensor(Sensor sensor) {
-        this.sensor = sensor;
     }
 
     public String getAlarmCeil() {
@@ -155,5 +134,29 @@ public class Pass implements BuguEntity {
 
     public void setDeleteFlag(String deleteFlag) {
         this.deleteFlag = deleteFlag;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getSensorName() {
+        return SensorName;
+    }
+
+    public void setSensorName(String sensorName) {
+        SensorName = sensorName;
+    }
+
+    public String getSensorType() {
+        return SensorType;
+    }
+
+    public void setSensorType(String sensorType) {
+        SensorType = sensorType;
     }
 }

@@ -1,27 +1,38 @@
 package com.msp.impulse.entity;
 
-import com.bugull.mongo.annotations.Entity;
-import com.bugull.mongo.annotations.Ref;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
-@Entity
+import java.io.Serializable;
+import java.util.Date;
+
 @ApiModel(value = "控制指令", description = "控制指令")
-public class ControlInstru {
+public class ControlInstru implements Serializable {
 
-    @Ref
-    @ApiModelProperty(name = "detailedAdd", value = "详细地址", example = "", required = true)
+    @DBRef
+    @ApiModelProperty(name = "relay", value = "继电器", example = "", required = true)
     private Relay relay;
-    @ApiModelProperty(name = "dealStatus", value = "处理状态", example = "", required = true)
+    @ApiModelProperty(name = "nowStatus", value = "当前状态", example = "0-开 1-关", required = true)
+    private String  nowStatus;
+    @ApiModelProperty(name = "dealStatus", value = "处理状态", example = "0-开 1-关", required = true)
     private String  dealStatus;
-    @ApiModelProperty(name = "returnStatus", value = "返回状态", example = "", required = true)
+    @ApiModelProperty(name = "returnStatus", value = "返回状态", example = "0-失败 1-成功", required = true)
     private String  returnStatus;
     @ApiModelProperty(name = "downTime", value = "下发时间", example = "", required = true)
-    private  Long  downTime;
+    private  Date  downTime;
     @ApiModelProperty(name = "executeTime", value = "执行时间", example = "", required = true)
-    private  Long  executeTime;
+    private  Date  executeTime;
     @ApiModelProperty(name = "executeTime", value = "附加信息", example = "", required = true)
     private  String   extraMessage;
+    @ApiModelProperty(name = "gatewayName", value = "网关名称", example = "", required = true)
+    private  String   gatewayName;
+    @ApiModelProperty(name = "sensorName", value = "传感器名称", example = "", required = true)
+    private  String   sensorName;
+    @ApiModelProperty(name = "updateTime", value = "更新时间", example = "2019-01-01 00:00:00", required = true)
+    private Date updateTime;
+    @ApiModelProperty(name = "createTime", value = "创建时间", example = "2019-01-01 00:00:00", required = true)
+    private Date createTime;
 
     public Relay getRelay() {
         return relay;
@@ -47,19 +58,19 @@ public class ControlInstru {
         this.returnStatus = returnStatus;
     }
 
-    public Long getDownTime() {
+    public Date getDownTime() {
         return downTime;
     }
 
-    public void setDownTime(Long downTime) {
+    public void setDownTime(Date downTime) {
         this.downTime = downTime;
     }
 
-    public Long getExecuteTime() {
+    public Date getExecuteTime() {
         return executeTime;
     }
 
-    public void setExecuteTime(Long executeTime) {
+    public void setExecuteTime(Date executeTime) {
         this.executeTime = executeTime;
     }
 
@@ -69,5 +80,13 @@ public class ControlInstru {
 
     public void setExtraMessage(String extraMessage) {
         this.extraMessage = extraMessage;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

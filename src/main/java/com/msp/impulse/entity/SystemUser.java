@@ -1,14 +1,13 @@
 package com.msp.impulse.entity;
 
-import com.bugull.mongo.SimpleEntity;
-import com.bugull.mongo.annotations.Entity;
-import com.bugull.mongo.annotations.Id;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.annotation.Id;
 
-@Entity
+import java.io.Serializable;
+
 @ApiModel(value = "管理员", description = "管理员")
-public class SystemUser extends SimpleEntity {
+public class SystemUser implements Serializable {
     @Id
     @ApiModelProperty(name = "Id", value = "用户ID", example = "5bd73ffd72c540e435ecbfbf")
     private String id;
@@ -17,11 +16,9 @@ public class SystemUser extends SimpleEntity {
     @ApiModelProperty(name = "password", value = "密码", example = "admin", required = true)
     private String password;
 
-    @Override
     public String getId() {
         return id;
     }
-    @Override
     public void setId(String id) {
         this.id = id;
     }

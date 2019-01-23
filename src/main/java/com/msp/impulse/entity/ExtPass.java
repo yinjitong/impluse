@@ -1,17 +1,16 @@
 package com.msp.impulse.entity;
 
-import com.bugull.mongo.BuguEntity;
-import com.bugull.mongo.annotations.Entity;
-import com.bugull.mongo.annotations.Id;
-import com.bugull.mongo.annotations.RefList;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
-@Entity
 @ApiModel(value = "外接通道参数", description = "通道参数")
-public class ExtPass implements BuguEntity {
+public class ExtPass implements Serializable {
     @Id
     @ApiModelProperty(name = "id", value = "外接通道ID", example = "1")
     private String id;
@@ -19,18 +18,17 @@ public class ExtPass implements BuguEntity {
     private String passNo;
     @ApiModelProperty(name = "address", value = "地址", example = "北京市海淀区西三旗街道小营东路七号院")
     private String address;
-    @RefList
-    @ApiModelProperty(name = "passes", value = "通道", example = "[]")
-    private List<Pass> passes;
+    @DBRef
+    @ApiModelProperty(name = "passList", value = "通道", example = "[]")
+    private List<Pass> passList;
     @ApiModelProperty(name="deleteFlag",value = "删除标志",example = "0-使用1-删除")
     private  String  deleteFlag;
+    @ApiModelProperty(name = "createTime", value = "创建时间", example = "2019-01-01 00:00:00", required = true)
+    private Date createTime;
 
-    @Override
     public String getId() {
         return id;
     }
-
-    @Override
     public void setId(String id) {
         this.id = id;
     }
@@ -51,12 +49,12 @@ public class ExtPass implements BuguEntity {
         this.address = address;
     }
 
-    public List<Pass> getPasses() {
-        return passes;
+    public List<Pass> getPassList() {
+        return passList;
     }
 
-    public void setPasses(List<Pass> passes) {
-        this.passes = passes;
+    public void setPassList(List<Pass> passList) {
+        this.passList = passList;
     }
 
     public String getDeleteFlag() {
@@ -65,5 +63,13 @@ public class ExtPass implements BuguEntity {
 
     public void setDeleteFlag(String deleteFlag) {
         this.deleteFlag = deleteFlag;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

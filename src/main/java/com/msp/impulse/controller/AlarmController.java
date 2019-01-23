@@ -1,6 +1,7 @@
 package com.msp.impulse.controller;
 
 import com.msp.impulse.base.BaseResponse;
+import com.msp.impulse.base.ResponseCode;
 import com.msp.impulse.query.AlarmQuery;
 import com.msp.impulse.service.AlarmService;
 import io.swagger.annotations.Api;
@@ -24,6 +25,15 @@ public class AlarmController {
     @PostMapping("findAlarm")
     @ApiOperation(value = "查询警报", notes = "查询警报", tags = "警报管理", httpMethod = "POST")
     public BaseResponse findAlarm(@RequestBody AlarmQuery alarmQuery) {
-        return null;
+        BaseResponse response;
+        try {
+            response = alarmService.findAlarm(alarmQuery);
+        } catch (Exception e) {
+            logger.error(e.getMessage(),e);
+            response = new BaseResponse();
+            response.setResponseCode(ResponseCode.SERVER_FAILED.getCode());
+            response.setResponseMsg(ResponseCode.SERVER_FAILED.getMessage());
+        }
+        return response;
     }
 }

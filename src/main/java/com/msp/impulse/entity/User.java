@@ -1,15 +1,15 @@
 package com.msp.impulse.entity;
 
-import com.bugull.mongo.SimpleEntity;
-import com.bugull.mongo.annotations.Embed;
-import com.bugull.mongo.annotations.Entity;
-import com.bugull.mongo.annotations.Id;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
-@Entity
+import java.io.Serializable;
+import java.util.Date;
+
 @ApiModel(value = "用户", description = "用户")
-public class User extends SimpleEntity {
+public class User implements Serializable {
     @Id
     @ApiModelProperty(name = "Id", value = "用户ID", example = "1")
     private String id;
@@ -25,16 +25,16 @@ public class User extends SimpleEntity {
     private String gender;
     @ApiModelProperty(name = "email", value = "电子邮箱", example = "aaa@bbb.com", required = true)
     private String email;
-    @Embed
+    @DBRef
     @ApiModelProperty(name = "company", value = "公司信息")
     private Company company;
+    @ApiModelProperty(name = "createTime", value = "创建时间", example = "2019-01-01 00:00:00", required = true)
+    private Date createTime;
 
-    @Override
     public String getId() {
         return id;
     }
 
-    @Override
     public void setId(String id) {
         this.id = id;
     }
@@ -93,5 +93,13 @@ public class User extends SimpleEntity {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

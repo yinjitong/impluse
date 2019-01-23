@@ -33,7 +33,7 @@ public class UserService {
         String pwd = DigestUtils.md5DigestAsHex(user.getPassword().getBytes());
         user.setPassword(pwd);
 
-        userDao.insert(user);
+        userDao.save(user);
         response.setData(user);
         return response;
     }
@@ -46,7 +46,7 @@ public class UserService {
      * @return
      */
     public User findUserByNameAndPwd(String name, String password) {
-        return userDao.query().is("account", name).is("password", password).result();
+        return userDao.findUserByNameAndPwd(name,password);
     }
 
     /**

@@ -1,12 +1,19 @@
 package com.msp.impulse.dao;
 
-import com.bugull.mongo.BuguDao;
+import com.msp.impulse.base.BaseResponse;
 import com.msp.impulse.entity.Gateway;
-import org.springframework.stereotype.Repository;
+import com.msp.impulse.query.GatewayQuery;
 
-@Repository
-public class GatewayDao extends BuguDao<Gateway> {
-    public GatewayDao() {
-        super(Gateway.class);
-    }
+import java.util.List;
+
+public interface GatewayDao {
+    Gateway save(Gateway gateway);
+
+    void findAndRemove(String id);
+
+    List<Gateway> findGatewayByCondition(GatewayQuery gatewayQuery);
+
+    boolean findByName(String gatewayName);
+
+    Gateway findGatewayById(String id);
 }

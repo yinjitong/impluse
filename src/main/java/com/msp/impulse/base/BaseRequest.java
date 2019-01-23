@@ -3,18 +3,18 @@ package com.msp.impulse.base;
 import java.io.Serializable;
 
 public class BaseRequest implements Serializable {
-    private int pageNo;
-    private int pageSize;
+    private Integer pageNo;
+    private Integer pageSize;
 
-    public int getPageNo() {
+    public Integer getPageNo() {
         return pageNo;
     }
 
-    public void setPageNo(int pageNo) {
+    public void setPageNo(Integer pageNo) {
         this.pageNo = pageNo;
     }
 
-    public int getPageSize() {
+    public Integer getPageSize() {
         return pageSize;
     }
 

@@ -2,7 +2,6 @@ package com.msp.impulse.query;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiOperation;
 
 @ApiModel("报警查询")
 public class AlarmQuery{
@@ -15,13 +14,13 @@ public class AlarmQuery{
     @ApiModelProperty(name = "alarmStatus", value = "报警状态", example = "")
     private String alarmStatus;
     @ApiModelProperty(name="alarmDateFrom",value = "报警时间from" , example="")
-    private  Long  alarmDateFrom;
+    private  String  alarmDateFrom;
     @ApiModelProperty(name="alarmDateTo",value="报警时间to",example="")
-    private  Long  alarmDateTo;
+    private  String  alarmDateTo;
     @ApiModelProperty(name="closeDateFrom",value="关闭时间from",example="")
-    private Long closeDateFrom;
+    private String closeDateFrom;
     @ApiModelProperty(name="closeDateTo",value="关闭时间to",example="")
-    private  Long  closeDateTo;
+    private  String  closeDateTo;
 
     public String getGatewayName() {
         return gatewayName;
@@ -55,35 +54,36 @@ public class AlarmQuery{
         this.alarmStatus = alarmStatus;
     }
 
-    public Long getAlarmDateFrom() {
+
+    public String getAlarmDateFrom() {
         return alarmDateFrom;
     }
 
-    public void setAlarmDateFrom(Long alarmDateFrom) {
+    public void setAlarmDateFrom(String alarmDateFrom) {
         this.alarmDateFrom = alarmDateFrom;
     }
 
-    public Long getAlarmDateTo() {
+    public String getAlarmDateTo() {
         return alarmDateTo;
     }
 
-    public void setAlarmDateTo(Long alarmDateTo) {
+    public void setAlarmDateTo(String alarmDateTo) {
         this.alarmDateTo = alarmDateTo;
     }
 
-    public Long getCloseDateFrom() {
+    public String getCloseDateFrom() {
         return closeDateFrom;
     }
 
-    public void setCloseDateFrom(Long closeDateFrom) {
+    public void setCloseDateFrom(String closeDateFrom) {
         this.closeDateFrom = closeDateFrom;
     }
 
-    public Long getCloseDateTo() {
+    public String getCloseDateTo() {
         return closeDateTo;
     }
 
-    public void setCloseDateTo(Long closeDateTo) {
+    public void setCloseDateTo(String closeDateTo) {
         this.closeDateTo = closeDateTo;
     }
 }

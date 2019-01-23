@@ -1,14 +1,14 @@
 package com.msp.impulse.entity;
 
-import com.bugull.mongo.BuguEntity;
-import com.bugull.mongo.annotations.Entity;
-import com.bugull.mongo.annotations.Id;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.springframework.data.annotation.Id;
 
-@Entity
+import java.io.Serializable;
+import java.util.Date;
+
 @ApiModel(value = "公司", description = "公司")
-public class Company  implements BuguEntity {
+public class Company  implements Serializable {
     @Id
     @ApiModelProperty(name = "id", value = "公司id", example = "1")
     private String id;
@@ -24,11 +24,10 @@ public class Company  implements BuguEntity {
     private String loginName;
     @ApiModelProperty(name = "postalCode", value = "邮政编码", example = "100000", required = true)
     private String postalCode;
+    @ApiModelProperty(name = "createTime", value = "创建时间", example = "2019-01-01 00:00:00", required = true)
+    private Date createTime;
 
-    @Override
     public String getId() {return id; }
-
-    @Override
     public void setId(String id) { this.id = id;}
 
     public String getCompanyName() { return companyName; }
@@ -69,5 +68,13 @@ public class Company  implements BuguEntity {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

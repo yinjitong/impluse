@@ -3,6 +3,7 @@ package com.msp.impulse.controller;
 import com.msp.impulse.base.BaseResponse;
 import com.msp.impulse.base.ResponseCode;
 import com.msp.impulse.entity.Sensor;
+import com.msp.impulse.query.SensorQuery;
 import com.msp.impulse.service.SensorService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,12 +22,12 @@ public class SensorController {
     @Autowired
     private SensorService sensorService;
 
-    @PostMapping("addSensor")
-    @ApiOperation(value="新增",notes = "新增传感器",tags="传感器操作",httpMethod = "POST")
+    @PostMapping("saveSensor")
+    @ApiOperation(value="新增",notes = "新增或修改传感器",tags="传感器操作",httpMethod = "POST")
     public BaseResponse addSensor(@RequestBody Sensor sensor){
         BaseResponse response;
         try{
-           response=sensorService.addSensor(sensor);
+           response=sensorService.saveSensor(sensor);
         }catch(Exception e){
             logger.error(e.getMessage(),e);
             e.printStackTrace();
@@ -53,12 +54,12 @@ public class SensorController {
         return response;
     }
 
-    @GetMapping("searchSensor")
-    @ApiOperation(value = "查询", notes = "查询传感器相关信息", tags = "传感器操作", httpMethod = "GET")
-    public BaseResponse<List<Sensor>> querySensor(String sensorName, String gateWayName){
+    @PostMapping("searchSensor")
+    @ApiOperation(value = "查询", notes = "查询传感器相关信息", tags = "传感器操作", httpMethod = "POST")
+    public BaseResponse<List<Sensor>> querySensor(@RequestBody SensorQuery sensorQuery){
         BaseResponse<List<Sensor>> response;
         try{
-            response=sensorService.queryBySensorAndGateway(sensorName,gateWayName);
+            response=sensorService.queryBySensorAndGateway(sensorQuery);
         }catch(Exception e){
             logger.error(e.getMessage(),e);
             e.printStackTrace();

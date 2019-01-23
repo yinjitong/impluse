@@ -1,12 +1,11 @@
 package com.msp.impulse.dao;
 
-import com.bugull.mongo.BuguDao;
 import com.msp.impulse.entity.SystemUser;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public class SystemUserDao  extends BuguDao<SystemUser> {
-    public SystemUserDao() {
-        super(SystemUser.class);
-    }
+import java.util.List;
+
+public interface SystemUserDao {
+   SystemUser findByAccountAndPwd(String account, String encodePwd);
+
+    void save(SystemUser systemUser);
 }
