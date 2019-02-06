@@ -8,12 +8,14 @@ import com.msp.impulse.query.AlarmQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+
 @Service
 public class AlarmService {
     @Autowired
     private AlarmDao alarmDao;
 
-    public BaseResponse<Alarm> findAlarm(AlarmQuery alarmQuery) {
+    public BaseResponse<Alarm> findAlarm(AlarmQuery alarmQuery) throws ParseException {
         BaseResponse<Alarm> response=new BaseResponse();
         alarmDao.findAlarm(alarmQuery);
         response.setResponseCode(ResponseCode.OK.getCode());

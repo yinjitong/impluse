@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface AlarmDao {
     List<Alarm> findAlarm(AlarmQuery alarmQuery) throws ParseException;
+
+    List<Alarm> getAlarmList();
 }

@@ -6,6 +6,7 @@ import com.msp.impulse.dao.PassDao;
 import com.msp.impulse.dao.SensorDao;
 import com.msp.impulse.entity.Pass;
 import com.msp.impulse.entity.Sensor;
+import com.msp.impulse.query.PassQuery;
 import com.msp.impulse.query.SensorQuery;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +92,20 @@ public class SensorService {
         BaseResponse<Sensor> response=new BaseResponse<>();
         Sensor sensor = sensorDao.findOne(id);
         response.setData(sensor);
+        response.setResponseCode(ResponseCode.OK.getCode());
+        response.setResponseMsg(ResponseCode.OK.getMessage());
+        return response;
+    }
+
+    /**
+     * 根据网关名称，通道号查询通道信息
+     * @param passQuery
+     * @return
+     */
+    public BaseResponse<Pass> queryByPassNoAndGatewayName(PassQuery passQuery) {
+        BaseResponse response=new BaseResponse();
+        Pass pass=sensorDao.queryByPassNoAndGatewayName(passQuery);
+        response.setData(pass);
         response.setResponseCode(ResponseCode.OK.getCode());
         response.setResponseMsg(ResponseCode.OK.getMessage());
         return response;

@@ -2,7 +2,9 @@ package com.msp.impulse.controller;
 
 import com.msp.impulse.base.BaseResponse;
 import com.msp.impulse.base.ResponseCode;
+import com.msp.impulse.entity.Pass;
 import com.msp.impulse.entity.Sensor;
+import com.msp.impulse.query.PassQuery;
 import com.msp.impulse.query.SensorQuery;
 import com.msp.impulse.service.SensorService;
 import io.swagger.annotations.Api;
@@ -56,7 +58,7 @@ public class SensorController {
 
     @PostMapping("searchSensor")
     @ApiOperation(value = "查询", notes = "查询传感器相关信息", tags = "传感器操作", httpMethod = "POST")
-    public BaseResponse<List<Sensor>> querySensor(@RequestBody SensorQuery sensorQuery){
+    public BaseResponse<List<Sensor>> queryBySensorAndGateway(@RequestBody SensorQuery sensorQuery){
         BaseResponse<List<Sensor>> response;
         try{
             response=sensorService.queryBySensorAndGateway(sensorQuery);
@@ -69,5 +71,19 @@ public class SensorController {
         }
         return response;
     }
-
+    @PostMapping("queryByPassNoAndGatewayName")
+    @ApiOperation(value = "根据网关通道号查询通道信息", notes = "根据网关通道号查询通道信息", tags = "传感器操作", httpMethod = "POST")
+    public BaseResponse<Pass> queryByPassNoAndGatewayName(@RequestBody PassQuery passQuery){
+        BaseResponse<Pass> response;
+        try{
+            response=sensorService.queryByPassNoAndGatewayName(passQuery);
+        }catch(Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+            response = new BaseResponse<>();
+            response.setResponseCode(ResponseCode.SERVER_FAILED.getCode());
+            response.setResponseMsg(ResponseCode.SERVER_FAILED.getMessage());
+        }
+        return response;
+    }
 }

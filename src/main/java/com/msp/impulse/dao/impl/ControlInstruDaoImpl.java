@@ -1,6 +1,7 @@
 package com.msp.impulse.dao.impl;
 
 import com.msp.impulse.dao.ControlInstruDao;
+import com.msp.impulse.entity.Alarm;
 import com.msp.impulse.entity.ControlInstru;
 import com.msp.impulse.entity.Gateway;
 import com.msp.impulse.query.ControlInstruQuery;
@@ -39,5 +40,12 @@ public class ControlInstruDaoImpl implements ControlInstruDao {
         }
 
         return null;
+    }
+
+    @Override
+    public List<ControlInstru> getControlInstruList() {
+        Query query=new Query();
+        List<ControlInstru> controlInstruList = mongoTemplate.find(query, ControlInstru.class);
+        return controlInstruList;
     }
 }

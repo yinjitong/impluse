@@ -59,4 +59,15 @@ public class AlarmDaoImpl implements AlarmDao {
         List<Alarm> alarms = mongoTemplate.find(query, Alarm.class);
         return alarms;
     }
+
+    /**
+     * 查询所有警报信息
+     * @return
+     */
+    @Override
+    public List<Alarm> getAlarmList() {
+        Query query=new Query();
+        List<Alarm> alarms = mongoTemplate.find(query, Alarm.class);
+        return alarms;
+    }
 }

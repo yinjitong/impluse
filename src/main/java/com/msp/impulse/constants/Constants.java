@@ -21,6 +21,26 @@ public interface Constants {
             return name;
         }
     }
+    //监测类别
+    enum  SwitchStatus{
+        ON("开", "0"),
+        OFF("关", "1");
+
+        private SwitchStatus(String name, String value){
+            this.name = name;
+            this.value = value;
+        }
+        String name;
+        String value;
+
+        public String getValue() {
+            return value;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
 
 
 

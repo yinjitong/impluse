@@ -3,7 +3,9 @@ package com.msp.impulse.dao.impl;
 
 import com.msp.impulse.dao.SensorDao;
 import com.msp.impulse.entity.Gateway;
+import com.msp.impulse.entity.Pass;
 import com.msp.impulse.entity.Sensor;
+import com.msp.impulse.query.PassQuery;
 import com.msp.impulse.query.SensorQuery;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.apache.commons.lang.StringUtils;
@@ -82,5 +84,27 @@ public class SensorDaoImpl implements SensorDao {
         query.with(Sort.by(Sort.Order.desc("sensorNo")));
         List<Sensor> sensorList = mongoTemplate.find(query, Sensor.class);
         return sensorList;
+    }
+
+    /**
+     * 通过网关名称通道号查询通道
+     * @param passQuery
+     * @return
+     */
+    @Override
+    public Pass queryByPassNoAndGatewayName(PassQuery passQuery) {
+        Query query=new Query();
+        query.addCriteria(Criteria.where("equipmentName").is(passQuery.getGatewayName()));
+        List<Gateway> gateways = mongoTemplate.find(query, Gateway.class);
+        if (!gateways.isEmpty()){
+            List<Pass> passList = gateways.get(0).getPassList();
+            for (Pass pass:passList) {
+                if(pass.getSensorName().equals(passQuery.getSensorName())&&
+                        pass.getPassNo().equals(passQuery.getPassNo())){
+                    return pass;
+                }
+            }
+        }
+        return null;
     }
 }

@@ -32,8 +32,9 @@ public class Sensor {
     private  String  deleteFlag;
     @ApiModelProperty(name = "createTime", value = "创建时间", example = "2019-01-01 00:00:00", required = true)
     private Date createTime;
-    @ApiModelProperty(name = "gatewayName", value = "网管名称", example = "网关1", required = true)
-    private String gatewayName;
+    @DBRef
+    @ApiModelProperty(name = "gateway", value = "网管", example = "网关", required = true)
+    private Gateway gateway;
 
 
     public String getId() { return id; }
@@ -98,11 +99,11 @@ public class Sensor {
         this.createTime = createTime;
     }
 
-    public String getGatewayName() {
-        return gatewayName;
+    public Gateway getGateway() {
+        return gateway;
     }
 
-    public void setGatewayName(String gatewayName) {
-        this.gatewayName = gatewayName;
+    public void setGateway(Gateway gateway) {
+        this.gateway = gateway;
     }
 }

@@ -3,8 +3,7 @@ package com.msp.impulse.entity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-
+import java.math.BigDecimal;
 import java.util.Date;
 
 @ApiModel(value = "通道", description = "通道")
@@ -36,10 +35,12 @@ public class Pass  {
     private  String  deleteFlag;
     @ApiModelProperty(name = "createTime", value = "创建时间", example = "2019-01-01 00:00:00", required = true)
     private Date createTime;
-    @ApiModelProperty(name="SensorName",value = "传感器名称",example = "传感器1")
+    @ApiModelProperty(name="SensorName",value = "传感器名称",example = "")
     private  String  SensorName;
-    @ApiModelProperty(name="SensorType",value = "传感器类型",example = "传感器类型1")
+    @ApiModelProperty(name="SensorType",value = "传感器类型",example = "")
     private  String  SensorType;
+    @ApiModelProperty(name="value",value = "数值",example = "0.00")
+    private BigDecimal value;
 
     public String getId() {
         return id;
@@ -158,5 +159,13 @@ public class Pass  {
 
     public void setSensorType(String sensorType) {
         SensorType = sensorType;
+    }
+
+    public BigDecimal getValue() {
+        return value;
+    }
+
+    public void setValue(BigDecimal value) {
+        this.value = value;
     }
 }
