@@ -13,8 +13,10 @@ public class Relay implements Serializable {
     private String id;
     @ApiModelProperty(name = "wayNo", value = "路数", example = "{}")
     private  Integer wayNo;
-    @ApiModelProperty(name = "status", value = "状态", example = "0-开  1-关")
+    @ApiModelProperty(name = "status", value = "处理状态", example = "0-开  1-关")
     private  String status;
+    @ApiModelProperty(name = "returnStatus", value = "返回状态", example = "0-成功  1-失败")
+    private  String returnStatus;
     @ApiModelProperty(name = "createTime", value = "创建时间", example = "2019-01-01 00:00:00", required = true)
     private Date createTime;
 
@@ -28,6 +30,14 @@ public class Relay implements Serializable {
     public String getStatus() { return status; }
 
     public void setStatus(String status) { this.status = status; }
+
+    public String getReturnStatus() {
+        return returnStatus;
+    }
+
+    public void setReturnStatus(String returnStatus) {
+        this.returnStatus = returnStatus;
+    }
 
     public Date getCreateTime() {
         return createTime;

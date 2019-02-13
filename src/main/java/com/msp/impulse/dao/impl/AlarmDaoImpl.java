@@ -44,17 +44,25 @@ public class AlarmDaoImpl implements AlarmDao {
         if(StringUtils.isNotBlank(alarmQuery.getAlarmStatus())){//报警状态
             query.addCriteria(Criteria.where("alarmStatus").is(alarmQuery.getAlarmStatus()));
         }
+        Criteria alarmTime=null;
         if(alarmQuery.getAlarmDateFrom()!=null){//报警时间from
-            query.addCriteria(Criteria.where("alarmTime").gte(DateUtil.dateToISODate(alarmQuery.getAlarmDateFrom())));
+             alarmTime = Criteria.where("alarmTime").gte(DateUtil.dateToISODate(alarmQuery.getAlarmDateFrom()));
         }
         if(alarmQuery.getAlarmDateTo()!=null){//报警时间to
-            query.addCriteria(Criteria.where("alarmTime").lte(DateUtil.dateToISODate(alarmQuery.getAlarmDateTo())));
+            alarmTime.lte(DateUtil.dateToISODate(alarmQuery.getAlarmDateTo()));
         }
+        if(alarmTime!=null){
+            query.addCriteria(alarmTime);
+        }
+        Criteria closeTime=null;
         if(alarmQuery.getCloseDateFrom()!=null){//关闭时间from
-            query.addCriteria(Criteria.where("closeTime").gte(DateUtil.dateToISODate(alarmQuery.getCloseDateFrom())));
+            closeTime=Criteria.where("closeTime").gte(DateUtil.dateToISODate(alarmQuery.getCloseDateFrom()));
         }
         if(alarmQuery.getCloseDateTo()!=null){//关闭时间to
-            query.addCriteria(Criteria.where("closeTime").lte(DateUtil.dateToISODate(alarmQuery.getCloseDateTo())));
+            closeTime.lte(DateUtil.dateToISODate(alarmQuery.getCloseDateTo()));
+        }
+        if(closeTime!=null){
+            query.addCriteria(closeTime);
         }
         List<Alarm> alarms = mongoTemplate.find(query, Alarm.class);
         return alarms;

@@ -2,6 +2,7 @@ package com.msp.impulse.dao.impl;
 
 import com.msp.impulse.dao.GatewayDao;
 import com.msp.impulse.entity.Gateway;
+import com.msp.impulse.entity.Relay;
 import com.msp.impulse.query.GatewayQuery;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,5 +79,26 @@ public class GatewayDaoImpl implements GatewayDao {
         Query query=new Query();
         query.addCriteria(Criteria.where("id").is(id));
         return mongoTemplate.findOne(query,Gateway.class);
+    }
+
+    /**
+     * 通过网关名称和路数查询继电器
+     * @param gatewayName
+     * @param wayNo
+     * @return
+     */
+    @Override
+    public Relay findByNameAndWay(String gatewayName, Integer wayNo) {
+        Query query=new Query();
+        query.addCriteria(Criteria.where("equipmentName").is(gatewayName));
+        Gateway gateway = mongoTemplate.findOne(query, Gateway.class);
+        if(gateway!=null) {
+            for (Relay relay : gateway.getRelayList()) {
+                if (relay.getWayNo() == wayNo) {
+                    return relay;
+                }
+            }
+        }
+        return null;
     }
 }

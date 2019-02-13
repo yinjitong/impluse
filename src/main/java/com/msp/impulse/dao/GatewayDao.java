@@ -2,6 +2,7 @@ package com.msp.impulse.dao;
 
 import com.msp.impulse.base.BaseResponse;
 import com.msp.impulse.entity.Gateway;
+import com.msp.impulse.entity.Relay;
 import com.msp.impulse.query.GatewayQuery;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface GatewayDao {
     boolean findByName(String gatewayName);
 
     Gateway findGatewayById(String id);
+
+    Relay findByNameAndWay(String gatewayName, Integer wayNo);
 }

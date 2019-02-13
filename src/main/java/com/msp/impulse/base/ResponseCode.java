@@ -15,6 +15,8 @@ public enum ResponseCode {
     GATEWAYNAME_NULL(3008,"网关名称为空！"),
     SENSOR_REPEAT(3009,"传感器名称重复！"),
     SENSOR_NULL(3010,"传感器名称为空！"),
+    CONTRO_NOT_DONE(3011,"操作为完成，请稍后提交！"),
+    RELAY_NOT_EXSIST(3012,"网关对应的继电器不存在！"),
     ;
 
 

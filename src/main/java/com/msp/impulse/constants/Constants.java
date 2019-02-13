@@ -41,6 +41,26 @@ public interface Constants {
             return name;
         }
     }
+    //控制指令返回状态
+    enum  ReturnStatus{
+        SUCCESS("成功", "0"),
+        FAIL("失败", "1");
+
+        private ReturnStatus(String name, String value){
+            this.name = name;
+            this.value = value;
+        }
+        String name;
+        String value;
+
+        public String getValue() {
+            return value;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
 
 
 

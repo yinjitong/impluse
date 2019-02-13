@@ -13,15 +13,15 @@ public class ControlInstruQuery extends BaseRequest {
     @ApiModelProperty(name = "executeStatus", value = "开关状态", example = "0-开 1-关", required = true)
     private String  executeStatus;
     @ApiModelProperty(name = "downTimeStart", value = "下发时间开始", example = "", required = true)
-    private Date downTimeStart;
+    private String downTimeStart;
     @ApiModelProperty(name = "downTimeEnd", value = "下发时间结束", example = "", required = true)
-    private Date  downTimeEnd;
+    private String  downTimeEnd;
     @ApiModelProperty(name = "dealStatus", value = "处理状态", example = "0-开 1-关", required = true)
     private String  dealStatus;
     @ApiModelProperty(name = "executeTimeStart", value = "执行时间开始", example = "", required = true)
-    private  Date  executeTimeStart;
+    private  String   executeTimeStart;
     @ApiModelProperty(name = "executeTimeEnd", value = "执行时间结束", example = "", required = true)
-    private  Date  executeTimeEnd;
+    private  String  executeTimeEnd;
 
     public String getGatewayName() {
         return gatewayName;
@@ -39,19 +39,19 @@ public class ControlInstruQuery extends BaseRequest {
         this.executeStatus = executeStatus;
     }
 
-    public Date getDownTimeStart() {
+    public String getDownTimeStart() {
         return downTimeStart;
     }
 
-    public void setDownTimeStart(Date downTimeStart) {
+    public void setDownTimeStart(String downTimeStart) {
         this.downTimeStart = downTimeStart;
     }
 
-    public Date getDownTimeEnd() {
+    public String getDownTimeEnd() {
         return downTimeEnd;
     }
 
-    public void setDownTimeEnd(Date downTimeEnd) {
+    public void setDownTimeEnd(String downTimeEnd) {
         this.downTimeEnd = downTimeEnd;
     }
 
@@ -63,19 +63,19 @@ public class ControlInstruQuery extends BaseRequest {
         this.dealStatus = dealStatus;
     }
 
-    public Date getExecuteTimeStart() {
+    public String getExecuteTimeStart() {
         return executeTimeStart;
     }
 
-    public void setExecuteTimeStart(Date executeTimeStart) {
+    public void setExecuteTimeStart(String executeTimeStart) {
         this.executeTimeStart = executeTimeStart;
     }
 
-    public Date getExecuteTimeEnd() {
+    public String getExecuteTimeEnd() {
         return executeTimeEnd;
     }
 
-    public void setExecuteTimeEnd(Date executeTimeEnd) {
+    public void setExecuteTimeEnd(String executeTimeEnd) {
         this.executeTimeEnd = executeTimeEnd;
     }
 }

@@ -86,20 +86,25 @@ public class GatewayService {
                 if(StringUtils.isBlank(relay.getStatus())){
                     throw new MyException("请输入控制指令进行继电器的开关操作");
                 }
+                if(relay.getWayNo()==null){
+                    throw new MyException("请确认继电器路数");
+                }
+                //登记控制指令
                 ControlInstru controlInstru=new ControlInstru();
-                controlInstru.setCreateTime(new Date());
-                controlInstru.setDealStatus(relay.getStatus());
-                controlInstru.setDownTime(new Date());
-//                controlInstru.setExecuteTime();
-//                controlInstru.setExtraMessage();
                 controlInstru.setRelay(relay);
-//                controlInstru.setReturnStatus();
+                controlInstru.setDownTime(new Date());//下发时间
+                controlInstru.setDealStatus(relay.getStatus());//处理状态0-开 1-关
+//                controlInstru.setExecuteTime();//执行时间
+//                controlInstru.setReturnStatus();//返回状态
+//                controlInstru.setExtraMessage();//附件信息
+                controlInstru.setGatewayName(gateway.getEquipmentName());//网关名称
+                controlInstru.setWayNo(relay.getWayNo());//网关路数
+//                controlInstru.setUpdateTime();//更新时间
+//                controlInstru.setFinalStatus();//最终状态
+                controlInstru.setCreateTime(new Date());
                 controlInstruDao.save(controlInstru);
-
             }
             gateway.setRelayList(relayList);
-
-
         }
 
         gateway.setCreateTime(new Date());

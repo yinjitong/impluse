@@ -37,10 +37,8 @@ public class Pass  {
     private Date createTime;
     @ApiModelProperty(name="SensorName",value = "传感器名称",example = "")
     private  String  SensorName;
-    @ApiModelProperty(name="SensorType",value = "传感器类型",example = "")
+    @ApiModelProperty(name="SensorType",value = "传感类型",example = "")
     private  String  SensorType;
-    @ApiModelProperty(name="value",value = "数值",example = "0.00")
-    private BigDecimal value;
 
     public String getId() {
         return id;
@@ -159,13 +157,5 @@ public class Pass  {
 
     public void setSensorType(String sensorType) {
         SensorType = sensorType;
-    }
-
-    public BigDecimal getValue() {
-        return value;
-    }
-
-    public void setValue(BigDecimal value) {
-        this.value = value;
     }
 }

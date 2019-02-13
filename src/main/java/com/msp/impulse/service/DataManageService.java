@@ -7,7 +7,9 @@ import com.msp.impulse.dao.ControlInstruDao;
 import com.msp.impulse.dao.DataManageDao;
 import com.msp.impulse.entity.Alarm;
 import com.msp.impulse.entity.ControlInstru;
+import com.msp.impulse.entity.DataHistory;
 import com.msp.impulse.entity.Pass;
+import com.msp.impulse.query.DataHistoryQuery;
 import com.msp.impulse.query.PassQuery;
 import com.msp.impulse.vo.HomePageDataVo;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -20,8 +22,8 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import java.math.BigDecimal;
 import java.net.URLEncoder;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -157,7 +159,9 @@ public class DataManageService {
     public BaseResponse findMapData() {
         BaseResponse response=new BaseResponse();
         Map<String, Object> mapMap = dataManageDao.findGatewayMap();
-        response.setData(mapMap);
+        HashMap map=new HashMap();
+        map.put("mapData",mapMap);
+        response.setData(map);
         response.setResponseMsg(ResponseCode.OK.getMessage());
         response.setResponseCode(ResponseCode.OK.getCode());
         return response;
@@ -165,16 +169,30 @@ public class DataManageService {
 
     /**
      *查询历史数据
-     * @param passQuery
+     * @param dataHistoryQuery
      * @return
      */
-    public BaseResponse findHistoryData(PassQuery passQuery) {
+    public BaseResponse findHistoryData(DataHistoryQuery dataHistoryQuery) throws ParseException {
         BaseResponse response=new BaseResponse();
-        List<Pass> valueList = dataManageDao.findHistoryData(passQuery);
+        List<DataHistory> valueList = dataManageDao.findHistoryData(dataHistoryQuery);
         response.setData(valueList);
         response.setResponseMsg(ResponseCode.OK.getMessage());
         response.setResponseCode(ResponseCode.OK.getCode());
         return response;
 
+    }
+
+    /**
+     * 查询实时数据
+     * @param dataHistoryQuery
+     * @return
+     */
+    public BaseResponse findRealTimeData(DataHistoryQuery dataHistoryQuery) throws ParseException {
+        BaseResponse response=new BaseResponse();
+        List<DataHistory> dataHistoryList = dataManageDao.findRealTimeData(dataHistoryQuery);
+        response.setData(dataHistoryList);
+        response.setResponseMsg(ResponseCode.OK.getMessage());
+        response.setResponseCode(ResponseCode.OK.getCode());
+        return response;
     }
 }

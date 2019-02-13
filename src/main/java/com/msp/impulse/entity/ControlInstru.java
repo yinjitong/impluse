@@ -13,8 +13,6 @@ public class ControlInstru implements Serializable {
     @DBRef
     @ApiModelProperty(name = "relay", value = "继电器", example = "", required = true)
     private Relay relay;
-    @ApiModelProperty(name = "nowStatus", value = "当前状态", example = "0-开 1-关", required = true)
-    private String  nowStatus;
     @ApiModelProperty(name = "dealStatus", value = "处理状态", example = "0-开 1-关", required = true)
     private String  dealStatus;
     @ApiModelProperty(name = "returnStatus", value = "返回状态", example = "0-失败 1-成功", required = true)
@@ -27,8 +25,10 @@ public class ControlInstru implements Serializable {
     private  String   extraMessage;
     @ApiModelProperty(name = "gatewayName", value = "网关名称", example = "", required = true)
     private  String   gatewayName;
-    @ApiModelProperty(name = "sensorName", value = "传感器名称", example = "", required = true)
-    private  String   sensorName;
+    @ApiModelProperty(name = "wayNo", value = "路数", example = "", required = true)
+    private  Integer   wayNo;
+    @ApiModelProperty(name = "finalStatus", value = "最终状态", example = "0-开 1-关", required = true)
+    private String  finalStatus;
     @ApiModelProperty(name = "updateTime", value = "更新时间", example = "2019-01-01 00:00:00", required = true)
     private Date updateTime;
     @ApiModelProperty(name = "createTime", value = "创建时间", example = "2019-01-01 00:00:00", required = true)
@@ -82,22 +82,6 @@ public class ControlInstru implements Serializable {
         this.extraMessage = extraMessage;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getNowStatus() {
-        return nowStatus;
-    }
-
-    public void setNowStatus(String nowStatus) {
-        this.nowStatus = nowStatus;
-    }
-
     public String getGatewayName() {
         return gatewayName;
     }
@@ -106,12 +90,20 @@ public class ControlInstru implements Serializable {
         this.gatewayName = gatewayName;
     }
 
-    public String getSensorName() {
-        return sensorName;
+    public Integer getWayNo() {
+        return wayNo;
     }
 
-    public void setSensorName(String sensorName) {
-        this.sensorName = sensorName;
+    public void setWayNo(Integer wayNo) {
+        this.wayNo = wayNo;
+    }
+
+    public String getFinalStatus() {
+        return finalStatus;
+    }
+
+    public void setFinalStatus(String finalStatus) {
+        this.finalStatus = finalStatus;
     }
 
     public Date getUpdateTime() {
@@ -120,5 +112,13 @@ public class ControlInstru implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

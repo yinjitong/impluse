@@ -2,6 +2,7 @@ package com.msp.impulse.controller;
 
 import com.msp.impulse.base.BaseResponse;
 import com.msp.impulse.base.ResponseCode;
+import com.msp.impulse.query.DataHistoryQuery;
 import com.msp.impulse.query.GatewayQuery;
 import com.msp.impulse.query.PassQuery;
 import com.msp.impulse.service.DataManageService;
@@ -57,16 +58,25 @@ public class DataManageController {
 
     @PostMapping("findRealTimeData")
     @ApiOperation(value = "查询实时数据", notes = "查询实时数据", tags = "数据管理", httpMethod = "POST")
-    public BaseResponse findRealTimeData() {
-        return null;
+    public BaseResponse findRealTimeData(@RequestBody  DataHistoryQuery dataHistoryQuery) {
+        BaseResponse response;
+        try {
+            response = dataManageService.findRealTimeData(dataHistoryQuery);
+        } catch (Exception e) {
+            logger.error(e.getMessage(),e);
+            response = new BaseResponse();
+            response.setResponseCode(ResponseCode.SERVER_FAILED.getCode());
+            response.setResponseMsg(ResponseCode.SERVER_FAILED.getMessage());
+        }
+        return response;
     }
 
     @PostMapping("findHistoryData")
     @ApiOperation(value = "查询历史数据", notes = "查询历史数据", tags = "数据管理", httpMethod = "POST")
-    public BaseResponse findHistoryData(@RequestBody PassQuery passQuery) {
+    public BaseResponse findHistoryData(@RequestBody DataHistoryQuery dataHistoryQuery) {
         BaseResponse response;
         try {
-            response = dataManageService.findHistoryData(passQuery);
+            response = dataManageService.findHistoryData(dataHistoryQuery);
         } catch (Exception e) {
             logger.error(e.getMessage(),e);
             response = new BaseResponse();

@@ -7,7 +7,6 @@ import com.msp.impulse.entity.Pass;
 import com.msp.impulse.entity.Sensor;
 import com.msp.impulse.query.PassQuery;
 import com.msp.impulse.query.SensorQuery;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -99,8 +98,9 @@ public class SensorDaoImpl implements SensorDao {
         if (!gateways.isEmpty()){
             List<Pass> passList = gateways.get(0).getPassList();
             for (Pass pass:passList) {
-                if(pass.getSensorName().equals(passQuery.getSensorName())&&
-                        pass.getPassNo().equals(passQuery.getPassNo())){
+                if(
+//                   pass.getSensorName().equals(passQuery.getSensorName())&&
+                     pass.getPassNo().equals(passQuery.getPassNo())){
                     return pass;
                 }
             }

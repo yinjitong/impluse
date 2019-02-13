@@ -3,20 +3,22 @@ package com.msp.impulse.dao.impl;
 import com.msp.impulse.constants.Constants;
 import com.msp.impulse.dao.DataManageDao;
 import com.msp.impulse.entity.*;
-import com.msp.impulse.query.PassQuery;
+import com.msp.impulse.query.DataHistoryQuery;
+import com.msp.impulse.util.DateUtil;
 import com.msp.impulse.vo.HomePageDataVo;
-import javafx.geometry.Pos;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 @Repository
 public class DataManageDaoImpl implements DataManageDao {
@@ -98,13 +100,68 @@ public class DataManageDaoImpl implements DataManageDao {
 
     /**
      * 查询历史数据
-     * @param passQuery
+     * @param dataHistoryQuery
      * @return
      */
     @Override
-    public List<Pass> findHistoryData(PassQuery passQuery) {
+    public List<DataHistory> findHistoryData(DataHistoryQuery dataHistoryQuery) throws ParseException {
         Query query=new Query();
-        List<Pass> passList = mongoTemplate.find(query, Pass.class);
+        //网关名称
+        if(StringUtils.isNotBlank(dataHistoryQuery.getGatewayName())){
+            Pattern pattern = Pattern.compile("^" + dataHistoryQuery.getGatewayName() + ".*$", Pattern.CASE_INSENSITIVE);
+            query.addCriteria(Criteria.where("gatewayName").regex(pattern));
+        }
+        //传感器名称
+        if(StringUtils.isNotBlank(dataHistoryQuery.getSensorName())){
+            Pattern pattern = Pattern.compile("^" + dataHistoryQuery.getSensorName() + ".*$", Pattern.CASE_INSENSITIVE);
+            query.addCriteria(Criteria.where("sensorName").regex(pattern));
+        }
+        if(dataHistoryQuery.getWayNo()!=null){
+            query.addCriteria(Criteria.where("wayNo").is(dataHistoryQuery.getWayNo()));
+        }
+        //上报时间
+        Criteria reportDate=null;
+        if(dataHistoryQuery.getReportDateFrom()!=null){//上报时间 From
+            reportDate = Criteria.where("reportDate").gte(DateUtil.dateToISODate(dataHistoryQuery.getReportDateFrom()));
+        }
+        if(dataHistoryQuery.getReportDateTo()!=null){//上报时间to
+            reportDate.lte(DateUtil.dateToISODate(dataHistoryQuery.getReportDateTo()));
+        }
+        if(reportDate!=null) {
+            query.addCriteria(reportDate);
+        }
+        List<DataHistory> passList = mongoTemplate.find(query, DataHistory.class);
         return passList;
+    }
+
+    @Override
+    public List<DataHistory> findRealTimeData(DataHistoryQuery dataHistoryQuery) throws ParseException {
+        Query query=new Query();
+        //网关名称
+        if(StringUtils.isNotBlank(dataHistoryQuery.getGatewayName())){
+            Pattern pattern = Pattern.compile("^" + dataHistoryQuery.getGatewayName() + ".*$", Pattern.CASE_INSENSITIVE);
+            query.addCriteria(Criteria.where("gatewayName").regex(pattern));
+        }
+        //传感器名称
+        if(StringUtils.isNotBlank(dataHistoryQuery.getSensorName())){
+            Pattern pattern = Pattern.compile("^" + dataHistoryQuery.getSensorName() + ".*$", Pattern.CASE_INSENSITIVE);
+            query.addCriteria(Criteria.where("sensorName").regex(pattern));
+        }
+        Criteria reportDate=null;
+        //上报时间
+        if(dataHistoryQuery.getReportDateFrom()!=null){//上报时间 From
+             reportDate = Criteria.where("reportDate").gte(DateUtil.dateToISODate(dataHistoryQuery.getReportDateFrom()));
+        }
+        if(dataHistoryQuery.getReportDateTo()!=null){//上报时间to
+            reportDate.lte(DateUtil.dateToISODate(dataHistoryQuery.getReportDateTo()));
+        }
+        if(reportDate!=null) {
+            query.addCriteria(reportDate);
+        }
+        if(dataHistoryQuery.getSensorType()!=null){
+            query.addCriteria(Criteria.where("SensorType").is(dataHistoryQuery.getSensorType()));
+        }
+        List<DataHistory> dataHistoryList = mongoTemplate.find(query, DataHistory.class);
+        return dataHistoryList;
     }
 }
