@@ -17,6 +17,8 @@ public enum ResponseCode {
     SENSOR_NULL(3010,"传感器名称为空！"),
     CONTRO_NOT_DONE(3011,"操作为完成，请稍后提交！"),
     RELAY_NOT_EXSIST(3012,"网关对应的继电器不存在！"),
+    LOGINNAME_EXSIST(3013,"登录名已存在！"),
+    INPUT_COMPAY(3014,"请输入公司相关信息！"),
     ;
 
 

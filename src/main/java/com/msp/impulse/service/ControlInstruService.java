@@ -60,7 +60,7 @@ public class ControlInstruService {
         ControlInstru controlInstru=new ControlInstru();
         controlInstru.setRelay(relay);
         controlInstru.setDownTime(new Date());//下发时间
-        controlInstru.setDealStatus(relay.getStatus());//处理状态0-开 1-关
+        controlInstru.setDealStatus(relay.getDealStatus());//处理状态0-开 1-关
         controlInstru.setExecuteTime(new Date());//执行时间
 //                controlInstru.setReturnStatus();//返回状态
         controlInstru.setExtraMessage(updateQuery.getExtraMessage());//附加信息

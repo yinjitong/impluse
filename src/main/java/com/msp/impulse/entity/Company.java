@@ -10,7 +10,7 @@ import java.util.Date;
 @ApiModel(value = "公司", description = "公司")
 public class Company  implements Serializable {
     @Id
-    @ApiModelProperty(name = "id", value = "公司id", example = "1")
+    @ApiModelProperty(name = "id", value = "id", example = "id", required = true)
     private String id;
     @ApiModelProperty(name = "companyName", value = "公司名称", example = "殷继彤的海鲜公司", required = true)
     private String companyName;
@@ -22,13 +22,12 @@ public class Company  implements Serializable {
     private String detailedAdd;
     @ApiModelProperty(name = "loginName", value = "登录名", example = "殷继彤的海鲜公司", required = true)
     private String loginName;
+    @ApiModelProperty(name = "password", value = "密码", example = "admin", required = true)
+    private String password;
     @ApiModelProperty(name = "postalCode", value = "邮政编码", example = "100000", required = true)
     private String postalCode;
     @ApiModelProperty(name = "createTime", value = "创建时间", example = "2019-01-01 00:00:00", required = true)
     private Date createTime;
-
-    public String getId() {return id; }
-    public void setId(String id) { this.id = id;}
 
     public String getCompanyName() { return companyName; }
 
@@ -61,6 +60,14 @@ public class Company  implements Serializable {
     public String getLoginName() { return loginName; }
 
     public void setLoginName(String loginName) { this.loginName = loginName; }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getPostalCode() {
         return postalCode;

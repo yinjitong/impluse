@@ -1,15 +1,21 @@
 package com.msp.impulse.dao;
 
+import com.msp.impulse.entity.Company;
 import com.msp.impulse.entity.User;
+import com.msp.impulse.query.PersonalInfoQuery;
 
 import java.util.List;
 
 public interface UserDao {
     List<User> findAll();
 
+    Company save(Company company);
+
     void save(User user);
 
-    User findUserByNameAndPwd(String name, String password);
-
     User findOne(String id);
+
+    Company findByNameAndPwd(String loginName, String password);
+
+    List<Company> findByName(String loginName);
 }

@@ -16,7 +16,7 @@ public class SessionFilter implements Filter {
     String NO_LOGIN = "您还未登录";
 
     //不需要登录就可以访问的路径(比如:注册登录等)
-    String[] includeUrls = new String[]{"/userLogin/login","/swagger-ui.html"};
+    String[] includeUrls = new String[]{"/user/login","/swagger-ui.html"};
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -37,7 +37,7 @@ public class SessionFilter implements Filter {
             filterChain.doFilter(servletRequest, servletResponse);
         } else { //需要过滤器
             // session中包含user对象,则是登录状态
-            if(session!=null&&session.getAttribute("sysUser") != null){
+            if(session!=null&&session.getAttribute("loginUser") != null){
                 // System.out.println("user:"+session.getAttribute("user"));
                 filterChain.doFilter(request, response);
             }else{

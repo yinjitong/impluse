@@ -10,15 +10,10 @@ import java.util.Date;
 
 @ApiModel(value = "用户", description = "用户")
 public class User implements Serializable {
-    @Id
-    @ApiModelProperty(name = "Id", value = "用户ID", example = "1")
-    private String id;
     @ApiModelProperty(name = "name", value = "姓名", example = "殷继彤", required = true)
     private String name;
     @ApiModelProperty(name = "account", value = "账号/登录名", example = "admin", required = true)
     private String account;
-    @ApiModelProperty(name = "password", value = "密码", example = "admin", required = true)
-    private String password;
     @ApiModelProperty(name = "phoneNo", value = "手机号", example = "13333333333", required = true)
     private  String phoneNo;
     @ApiModelProperty(name = "gender", value = "性别", example = "女", required = true)
@@ -30,14 +25,6 @@ public class User implements Serializable {
     private Company company;
     @ApiModelProperty(name = "createTime", value = "创建时间", example = "2019-01-01 00:00:00", required = true)
     private Date createTime;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -53,14 +40,6 @@ public class User implements Serializable {
 
     public void setAccount(String account) {
         this.account = account;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getPhoneNo() {
