@@ -5,7 +5,7 @@ spring:
     mongodb:
       custom:
         hosts:
-        - 192.168.218.128
+        - 39.105.86.90
         ports:
         - 27017
         database: huanyu
