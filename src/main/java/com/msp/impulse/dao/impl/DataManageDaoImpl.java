@@ -79,18 +79,22 @@ public class DataManageDaoImpl implements DataManageDao {
         List<Gateway> gateways = mongoTemplate.find(query, Gateway.class);
         List<Position> positionGatewayList=new ArrayList<>();
         for (Gateway gateway:gateways) {
-            Position position=new Position();
-            position.setLatitude(gateway.getLatitude());
-            position.setLongitude(gateway.getLongitude());
-            positionGatewayList.add(position);
+            if(StringUtils.isNotBlank(gateway.getLongitude())&& StringUtils.isNotBlank(gateway.getLatitude())) {
+                Position position = new Position();
+                position.setLatitude(gateway.getLatitude());
+                position.setLongitude(gateway.getLongitude());
+                positionGatewayList.add(position);
+            }
         }
         List<Sensor> sensorList = mongoTemplate.find(query, Sensor.class);
         List<Position> positionSensorList=new ArrayList<>();
         for (Sensor sensor:sensorList) {
-            Position position=new Position();
-            position.setLongitude(sensor.getLongitude());
-            position.setLatitude(sensor.getLatitude());
-            positionSensorList.add(position);
+            if(StringUtils.isNotBlank(sensor.getLongitude())&& StringUtils.isNotBlank(sensor.getLatitude())) {
+                Position position = new Position();
+                position.setLongitude(sensor.getLongitude());
+                position.setLatitude(sensor.getLatitude());
+                positionSensorList.add(position);
+            }
         }
         Map<String,Object> mapMap=new HashMap();
         mapMap.put("positionGatewayList",positionGatewayList);

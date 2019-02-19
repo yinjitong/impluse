@@ -7,6 +7,7 @@ import com.msp.impulse.entity.User;
 import com.msp.impulse.query.PersonalInfoQuery;
 import com.msp.impulse.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

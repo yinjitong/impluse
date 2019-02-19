@@ -16,7 +16,10 @@ public class SessionFilter implements Filter {
     String NO_LOGIN = "您还未登录";
 
     //不需要登录就可以访问的路径(比如:注册登录等)
-    String[] includeUrls = new String[]{"/user/login","/swagger-ui.html"};
+    String[] includeUrls = new String[]{"/user/login","/swagger-ui.html","/webjars/springfox-swagger-ui/swagger-ui.css",
+    "/webjars/springfox-swagger-ui/swagger-ui-bundle.js","/webjars/springfox-swagger-ui/springfox.css",
+    "/webjars/springfox-swagger-ui/swagger-ui-standalone-preset.js","/webjars/springfox-swagger-ui/springfox.js",
+    "/webjars/springfox-swagger-ui/favicon-32x32.png","/webjars/springfox-swagger-ui/favicon-16x16.png","/v2/api-docs "};
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -67,7 +70,7 @@ public class SessionFilter implements Filter {
      * @param uri
      */
     public boolean isNeedFilter(String uri) {
-
+         System.out.println("uir::"+uri);
         for (String includeUrl : includeUrls) {
             if(includeUrl.equals(uri)) {
                 return false;
