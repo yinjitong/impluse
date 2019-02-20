@@ -19,7 +19,7 @@ public class SessionFilter implements Filter {
     String[] includeUrls = new String[]{"/user/login","/swagger-ui.html","/webjars/springfox-swagger-ui/swagger-ui.css",
     "/webjars/springfox-swagger-ui/swagger-ui-bundle.js","/webjars/springfox-swagger-ui/springfox.css",
     "/webjars/springfox-swagger-ui/swagger-ui-standalone-preset.js","/webjars/springfox-swagger-ui/springfox.js",
-    "/webjars/springfox-swagger-ui/favicon-32x32.png","/webjars/springfox-swagger-ui/favicon-16x16.png","/v2/api-docs "};
+    "/webjars/springfox-swagger-ui/favicon-32x32.png","/webjars/springfox-swagger-ui/favicon-16x16.png","/v2/api-docs ","/v1.0.0/messageReceiver"};
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
