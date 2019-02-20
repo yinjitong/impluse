@@ -73,6 +73,7 @@ public class ApplicationMessageReceiver implements ApplicationListener<Applicati
             }
         }catch (Exception e){
             logger.error("订阅出错"+e.getMessage());
+            e.printStackTrace();
         }
     }
 
