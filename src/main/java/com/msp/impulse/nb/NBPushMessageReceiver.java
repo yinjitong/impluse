@@ -1,7 +1,6 @@
 package com.msp.impulse.nb;
 
 import com.iotplatform.client.dto.*;
-import com.iotplatform.client.invokeapi.PushMessageReceiver;
 
 public class NBPushMessageReceiver extends PushMessageReceiver {
     @Override
