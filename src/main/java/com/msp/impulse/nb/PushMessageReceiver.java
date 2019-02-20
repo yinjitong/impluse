@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @EnableAutoConfiguration
 public class PushMessageReceiver {
     private final String callbackurl = "/v1.0.0/messageReceiver";
@@ -20,7 +20,7 @@ public class PushMessageReceiver {
         method = {RequestMethod.POST}
     )
     @ResponseBody
-    private String receive(@RequestBody String body) throws Exception {
+    public String receive(@RequestBody String body) throws Exception {
         this.handleBody(body);
         if (body.contains("\"notifyType\":\"deviceAdded\"")) {
             this.handleDeviceAdded((NotifyDeviceAddedDTO) JsonUtil.jsonString2SimpleObj(body, NotifyDeviceAddedDTO.class));
@@ -102,7 +102,7 @@ public class PushMessageReceiver {
         method = {RequestMethod.POST}
     )
     @ResponseBody
-    private String receiveCmdResult(@RequestBody String body) throws Exception {
+    public String receiveCmdResult(@RequestBody String body) throws Exception {
         this.handleBody(body);
         this.handleNBCommandStateChanged((NotifyNBCommandStatusChangedDTO)JsonUtil.jsonString2SimpleObj(body, NotifyNBCommandStatusChangedDTO.class));
         return "ok";
