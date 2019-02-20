@@ -4,12 +4,9 @@ import com.iotplatform.client.dto.*;
 import com.iotplatform.utils.JsonUtil;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @EnableAutoConfiguration
 public class PushMessageReceiver {
     private final String callbackurl = "/v1.0.0/messageReceiver";
