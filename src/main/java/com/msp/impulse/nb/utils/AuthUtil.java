@@ -15,7 +15,7 @@ public class AuthUtil {
 		}
 		northApiClient = new NorthApiClient();
 
-        PropertyUtil.init("./src/main/resources/application.properties");
+        PropertyUtil.init("./src/main/resources/nb-iot-config.properties");
 		
 		ClientInfo clientInfo = new ClientInfo();
         clientInfo.setPlatformIp(PropertyUtil.getProperty("platformIp"));
