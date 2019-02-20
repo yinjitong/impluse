@@ -71,6 +71,7 @@ public class Test {
 			// TODO Auto-generated catch block
 			System.out.println("Test, concurrent test auth exception " + e.toString());
 		}
+
 		
 		for (int i = 0; i < 200; i++) {
 			
@@ -110,7 +111,7 @@ public class Test {
 				System.out.println("Test, concurrent test thread sleep exception " + e.getMessage());
 			}
 
-			t.start();
+			//t.start();
 		}
 		
 		
