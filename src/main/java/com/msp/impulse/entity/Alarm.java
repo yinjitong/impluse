@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 @ApiModel(value = "警报", description = "警报")
-@Document(collection="Alarm")//把一个java类声明为mongodb的文档，可以通过collection参数指定这个类对应的文档。
 public class Alarm implements Serializable {
     @Id
     @ApiModelProperty(name = "id", value = "警报id", example = "1")

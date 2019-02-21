@@ -132,3 +132,4 @@ public class HexParser {
         return String.format("%x", new BigInteger(1, plainText.getBytes(Charset.forName("UTF-8"))));
     }
 }
+

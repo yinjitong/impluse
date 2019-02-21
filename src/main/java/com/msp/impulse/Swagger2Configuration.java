@@ -40,7 +40,7 @@ public class Swagger2Configuration extends WebMvcConfigurationSupport {
         return new ApiInfoBuilder()
                 .title("环宇智谷数据平台API")
                 .description("环宇智谷数据平台API")
-                .termsOfServiceUrl("http://127.0.0.1:8080/")
+                .termsOfServiceUrl("http://localhost:8080/")
                 .contact(new Contact("yin","http://localhost:8080/swagger-ui.html","email"))
                 .version("1.0")
                 .build();

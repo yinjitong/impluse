@@ -11,6 +11,7 @@ import com.msp.impulse.query.SensorQuery;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -106,6 +107,34 @@ public class SensorService {
         BaseResponse response=new BaseResponse();
         Pass pass=sensorDao.queryByPassNoAndGatewayName(passQuery);
         response.setData(pass);
+        response.setResponseCode(ResponseCode.OK.getCode());
+        response.setResponseMsg(ResponseCode.OK.getMessage());
+        return response;
+    }
+
+    /**
+     * 删除传感器
+     * @param id
+     * @return
+     */
+    public BaseResponse deleteSensor(String id) {
+        BaseResponse response = new BaseResponse();
+        sensorDao.findAndRemove(id);
+        response.setResponseCode(ResponseCode.OK.getCode());
+        response.setResponseMsg(ResponseCode.OK.getMessage());
+        return response;
+    }
+    /**
+     * 删除传感器
+     * @param ids
+     * @return
+     */
+    @Transactional
+    public BaseResponse deleteSensorBatch(List<String> ids) {
+        BaseResponse response = new BaseResponse();
+        for (String id:ids) {
+            sensorDao.findAndRemove(id);
+        }
         response.setResponseCode(ResponseCode.OK.getCode());
         response.setResponseMsg(ResponseCode.OK.getMessage());
         return response;

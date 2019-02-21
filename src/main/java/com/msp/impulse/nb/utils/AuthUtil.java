@@ -4,6 +4,7 @@ import com.iotplatform.client.NorthApiClient;
 import com.iotplatform.client.NorthApiException;
 import com.iotplatform.client.dto.ClientInfo;
 import com.iotplatform.utils.PropertyUtil;
+import com.msp.impulse.nb.utils.AesUtil;
 
 public class AuthUtil {
 	

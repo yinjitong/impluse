@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
-@RequestMapping("dataManage")
+@RequestMapping("impulse/dataManage")
 @Api(value = "数据管理", tags = "数据管理", description = "数据管理")
 public class DataManageController {
     private static Logger logger = LoggerFactory.getLogger(DataManageController.class);

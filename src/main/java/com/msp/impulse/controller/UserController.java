@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("impulse/user")
 @Api(value = "用户接口", tags = "用户接口", description = "用户接口API")
 public class UserController {
     private static Logger logger = LoggerFactory.getLogger(UserController.class);

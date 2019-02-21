@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("controlInstru")
+@RequestMapping("impulse/controlInstru")
 @Api(value = "控制指令", tags = "控制指令", description = "控制指令")
 public class ControlInstruController {
     private static Logger logger = LoggerFactory.getLogger(ControlInstruController.class);

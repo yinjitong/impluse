@@ -107,4 +107,10 @@ public class SensorDaoImpl implements SensorDao {
         }
         return null;
     }
+
+    @Override
+    public void findAndRemove(String id) {
+        Query query = new Query(Criteria.where("id").is(id));
+        mongoTemplate.findAndRemove(query,Sensor.class);
+    }
 }
