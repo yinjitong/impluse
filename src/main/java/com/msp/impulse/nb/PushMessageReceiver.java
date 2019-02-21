@@ -112,59 +112,83 @@ public class PushMessageReceiver {
     }
 
     public void handleDeviceAdded(NotifyDeviceAddedDTO body) {
+        System.out.println("deviceAdded ==> " + body);
+        //TODO deal with deviceAdded notification
     }
 
     public void handleBindDevice(NotifyBindDeviceDTO body) {
+        System.out.println("bindDevice ==> " + body);
+        //TODO deal with BindDevice notification
     }
 
     public void handleDeviceInfoChanged(NotifyDeviceInfoChangedDTO body) {
+        System.out.println("deviceInfoChanged ==> " + body);
+        //TODO deal with DeviceInfoChanged notification
     }
 
     public void handleDeviceDataChanged(NotifyDeviceDataChangedDTO body) {
+        System.out.println("deviceDataChanged ==> " + body);
     }
 
     public void handleDeviceDatasChanged(NotifyDeviceDatasChangedDTO body) {
+        System.out.println("deviceDatasChanged ==> " + body);
     }
 
     public void handleServiceInfoChanged(NotifyServiceInfoChangedDTO body) {
+        System.out.println("serviceInfoChanged ==> " + body);
     }
 
     public void handleDeviceDeleted(NotifyDeviceDeletedDTO body) {
+        System.out.println("deviceDeleted ==> " + body);
     }
 
     public void handleMessageConfirm(NotifyMessageConfirmDTO body) {
+        System.out.println("messageConfirm ==> " + body);
     }
 
     public void handleCommandRsp(NotifyCommandRspDTO body) {
+        System.out.println("commandRsp ==> " + body);
     }
 
     public void handleDeviceEvent(NotifyDeviceEventDTO body) {
+        System.out.println("deviceEvent ==> " + body);
     }
 
     public void handleDeviceModelAdded(NotifyDeviceModelAddedDTO body) {
+        System.out.println("deviceModelAdded ==> " + body);
     }
 
     public void handleDeviceModelDeleted(NotifyDeviceModelDeletedDTO body) {
+        System.out.println("deviceModelDeleted ==> " + body);
     }
 
     public void handleRuleEvent(NotifyRuleEventDTO body) {
+        System.out.println("ruleEvent ==> " + body);
     }
 
     public void handleDeviceDesiredStatusChanged(NotifyDeviceDesiredStatusChangedDTO body) {
+        System.out.println("deviceDesiredStatusChanged ==> " + body);
     }
 
     public void handleSwUpgradeStateChanged(NotifySwUpgradeStateChangedDTO body) {
+        System.out.println("swUpgradeStateChanged ==> " + body);
     }
 
     public void handleSwUpgradeResult(NotifySwUpgradeResultDTO body) {
+        System.out.println("swUpgradeResult ==> " + body);
     }
 
     public void handleFwUpgradeStateChanged(NotifyFwUpgradeStateChangedDTO body) {
+        System.out.println("fwUpgradeStateChanged ==> " + body);
     }
 
+
     public void handleFwUpgradeResult(NotifyFwUpgradeResultDTO body) {
+        System.out.println("fwUpgradeResult ==> " + body);
     }
 
     public void handleNBCommandStateChanged(NotifyNBCommandStatusChangedDTO body) {
+        System.out.println("NBCommandStateChanged ==> " + body);
     }
+
 }
