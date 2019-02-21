@@ -119,12 +119,12 @@
             <artifactId>jackson-annotations</artifactId>
             <version>2.9.7</version>
         </dependency>
-
         <dependency>
             <groupId>com.huawei.m2m.iotplatform</groupId>
             <artifactId>api-client</artifactId>
             <version>1.0.0</version>
         </dependency>
+
     </dependencies>
 
 
