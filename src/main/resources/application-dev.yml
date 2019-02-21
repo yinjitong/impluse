@@ -20,6 +20,6 @@ server:
 logging:
   level:
     root: INFO
-  file: impulse.log
+  file: impulse1.log
 
 
