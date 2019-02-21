@@ -165,4 +165,20 @@ public class GatewayService {
         response.setResponseMsg(ResponseCode.OK.getMessage());
         return response;
     }
+
+    /**
+     * 批量删除网关数据
+     * @param ids
+     * @return
+     */
+    @Transactional
+    public BaseResponse deleteGatewayBatch(List<String> ids) {
+        BaseResponse response = new BaseResponse<>();
+        for (String id:ids) {
+            gatewayDao.findAndRemove(id);
+        }
+        response.setResponseCode(ResponseCode.OK.getCode());
+        response.setResponseMsg(ResponseCode.OK.getMessage());
+        return response;
+    }
 }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("alarmManage")
+@RequestMapping("impulse/alarmManage")
 @Api(value = "警报管理", tags = "警报管理", description = "警报管理")
 public class AlarmController {
     private static Logger logger = LoggerFactory.getLogger(AlarmController.class);

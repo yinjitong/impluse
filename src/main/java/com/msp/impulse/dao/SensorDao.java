@@ -17,4 +17,6 @@ public interface SensorDao {
     List<Sensor> queryBySensorAndGateway(SensorQuery sensorQuery);
 
     Pass queryByPassNoAndGatewayName(PassQuery passQuery);
+
+    void findAndRemove(String id);
 }
